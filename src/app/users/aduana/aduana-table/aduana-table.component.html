@@ -1,0 +1,60 @@
+<div class="row">
+  <div class="col shadow rounded me-2 bg-white p-0">
+    <h1 class="m-5 content__header fw-bold">Entradas y Salidas</h1>
+    <div class="row justify-content-center">
+      <div class="table__content col-11 mb-4">
+        <table
+          id="generic"
+          class="table table-striped table-borderless align-middle"
+        >
+          <thead>
+            <tr>
+              <th class="table__header align-middle">Matrícula</th>
+              <th class="table__header align-middle">Tipo</th>
+              <th class="table__header align-middle">Puerto</th>
+              <th class="table__header align-middle">Instalación</th>
+              <th class="table__header align-middle">Capitán</th>
+              <th class="table__header align-middle">DNI</th>
+              <th class="table__header align-middle">Fecha</th>
+              <th class="table__header align-middle">Hora</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for(generic of generics;track generic.license) {
+            <tr
+              title="Haz click para marcar como leído"
+              class="data__row default__opacity"
+            >
+              <td>{{ generic.license }}</td>
+              <!-- Cambia el color de fondo dependiento de si es entrada o salida -->
+              @if(generic.type == "Entrada"){
+              <td>
+                <div
+                  class="arrival d-flex align-items-center justify-content-center"
+                >
+                  <span>{{ generic.type }}</span>
+                </div>
+              </td>
+              } @else {
+              <td>
+                <div
+                  class="departure d-flex align-items-center justify-content-center"
+                >
+                  <span>{{ generic.type }}</span>
+                </div>
+              </td>
+              }
+              <td>{{ generic.harbour }}</td>
+              <td>{{ generic.installation }}</td>
+              <td>{{ generic.captain }}</td>
+              <td>{{ generic.dni }}</td>
+              <td>{{ generic.date }}</td>
+              <td>{{ generic.hour }}</td>
+            </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

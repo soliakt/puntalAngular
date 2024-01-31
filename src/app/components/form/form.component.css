@@ -1,0 +1,49 @@
+.form__content{
+    background-clip: content-box;
+    -webkit-background-clip: content-box;
+    outline:none;
+    border:none;
+    text-decoration:none;
+}
+
+.form__title__header{
+    font-weight: bold;
+}
+
+.form__content__icon{
+    background-color: white !important;
+    color: var(--corporate-blue);
+}
+
+.form__breadcrumb__selected{
+    font-family: 'Roboto medium';
+    color: var(--corporate-dark-blue);
+}
+.form__breadcrumb__notSelected{
+    text-decoration: none;
+    font-family: 'Roboto medium';
+    color: var(--corporate-gray);
+}
+.form__content__required{
+    color: var(--corporate-red);
+    font-family: 'Roboto medium';
+    font-style: italic;
+}
+.form__content__return{
+    color: var(--corporate-blue);
+    text-decoration: none;
+}
+.form__content__registerButton{
+    background-color: var(--corporate-blue);
+    color:white;
+    font-family: 'Roboto';
+}
+.form__content input::placeholder{
+    color: var(--corporate-input-placeholder);
+}
+.form__client__roleSelect{
+    background-color: white !important;
+}
+.form__content label::selection{
+    color:red;
+}

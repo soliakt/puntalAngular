@@ -1,0 +1,25 @@
+.sidebar{
+    font-family: 'Roboto';
+    position: -webkit-sticky;
+    position: sticky;
+    top: 9rem;
+    height: calc(100vh - 10rem);
+    overflow-y: auto;
+}
+.sidebar__content__userinfo{
+    background-color: white;
+}
+.sidebar__content__userinfoPic{
+    width: 75px;
+    height: 75px;
+}
+
+.sidebar__content__optionsSelected{
+    background-color: white;
+    color: var(--corporate-blue);
+}
+
+.sidebar__logout{
+    color: var(--corporate-blue);
+}
+

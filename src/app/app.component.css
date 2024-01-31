@@ -1,0 +1,5 @@
+.bd-sidebar {
+  position: sticky;
+  top: 143px;
+  height: calc(100vh - 143px);
+}

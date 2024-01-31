@@ -1,0 +1,12 @@
+* {
+    font-family: 'Roboto';
+}
+
+.mobile-section__active .nav-link {
+    color: #008ECB !important;
+    background-color: white !important;
+}
+
+.nav-link {
+    color: black;
+}

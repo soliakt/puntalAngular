@@ -1,0 +1,45 @@
+.navbar {
+  height: 75px;
+  background: var(--corporate-dark);
+}
+
+.navbar__userinfo__circle {
+  width: 41.87px;
+  height: 45px;
+  background: #399375;
+}
+
+.navbar__userinfo__circleLetter {
+  width: 21px;
+  height: 18px;
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 18px;
+
+  color: #ffffff;
+}
+
+.navbar__userinfo__username {
+  width: 107px;
+  height: 16px;
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 16px;
+
+  color: #ffffff;
+}
+
+.navbar__userinfo__role {
+  width: 76px;
+  height: 14px;
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 300;
+  font-size: 12px;
+  line-height: 14px;
+  color: #ffffff;
+}

@@ -1,0 +1,54 @@
+.table__content {
+  background-clip: content-box;
+  -webkit-background-clip: content-box;
+  outline: none;
+  border: none;
+  text-decoration: none;
+}
+
+tr {
+  height: 65px;
+}
+
+.table__header {
+  background-color: transparent !important;
+}
+.content__header {
+  font-family: "Roboto";
+  font-weight: medium;
+}
+
+.arrival {
+  background-color: #76c4ff;
+  width: 60px;
+  height: 23px;
+  padding: 3px;
+  border-radius: 4px;
+  padding: 3px;
+}
+
+.departure {
+  background-color: #e58200;
+  width: 60px;
+  height: 23px;
+  color: white;
+  border-radius: 4px;
+  padding: 3px;
+}
+
+.table__select__items {
+  border: 1px solid black !important;
+}
+
+.checkbox__select {
+  width: 24px;
+  height: 24px;
+}
+
+.default__opacity {
+  opacity: 1;
+}
+
+.restore {
+  opacity: 0.3;
+}

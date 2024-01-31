@@ -1,0 +1,402 @@
+[
+  {
+    "license": "L23456",
+    "type": "Entrada",
+    "harbour": "Puerto X",
+    "installation": "Instalación A",
+    "captain": "Juan Pérez Gómez",
+    "dni": "12345678X",
+    "date": "2023/02/15",
+    "hour": "14:45"
+  },
+  {
+    "license": "L98765",
+    "type": "Salida",
+    "harbour": "Puerto Y",
+    "installation": "Instalación B",
+    "captain": "María García Fernández",
+    "dni": "87654321Y",
+    "date": "2023/05/27",
+    "hour": "08:30"
+  },
+  {
+    "license": "L87654",
+    "type": "Entrada",
+    "harbour": "Puerto Z",
+    "installation": "Instalación C",
+    "captain": "Carlos Rodríguez López",
+    "dni": "98765432Z",
+    "date": "2023/08/10",
+    "hour": "17:15"
+  },
+  {
+    "license": "L54321",
+    "type": "Salida",
+    "harbour": "Puerto W",
+    "installation": "Instalación D",
+    "captain": "Ana Martínez Ruiz",
+    "dni": "23456789A",
+    "date": "2023/11/03",
+    "hour": "12:00"
+  },
+  {
+    "license": "L78901",
+    "type": "Entrada",
+    "harbour": "Puerto V",
+    "installation": "Instalación E",
+    "captain": "Pedro Sánchez García",
+    "dni": "34567890B",
+    "date": "2024/01/18",
+    "hour": "20:30"
+  },
+  {
+    "license": "L45678",
+    "type": "Salida",
+    "harbour": "Puerto U",
+    "installation": "Instalación F",
+    "captain": "Laura López Martínez",
+    "dni": "45678901C",
+    "date": "2024/04/02",
+    "hour": "09:00"
+  },
+  {
+    "license": "L01234",
+    "type": "Entrada",
+    "harbour": "Puerto T",
+    "installation": "Instalación G",
+    "captain": "José García Rodríguez",
+    "dni": "56789012D",
+    "date": "2024/07/14",
+    "hour": "16:45"
+  },
+  {
+    "license": "L34567",
+    "type": "Salida",
+    "harbour": "Puerto S",
+    "installation": "Instalación H",
+    "captain": "Carmen Martínez López",
+    "dni": "67890123E",
+    "date": "2024/10/29",
+    "hour": "11:15"
+  },
+  {
+    "license": "L67890",
+    "type": "Entrada",
+    "harbour": "Puerto R",
+    "installation": "Instalación I",
+    "captain": "Antonio Rodríguez García",
+    "dni": "78901234F",
+    "date": "2025/02/01",
+    "hour": "18:00"
+  },
+  {
+    "license": "L23456",
+    "type": "Salida",
+    "harbour": "Puerto Q",
+    "installation": "Instalación J",
+    "captain": "Isabel Sánchez Fernández",
+    "dni": "89012345G",
+    "date": "2025/05/17",
+    "hour": "07:30"
+  },
+  {
+    "license": "L54321",
+    "type": "Entrada",
+    "harbour": "Puerto M",
+    "installation": "Instalación K",
+    "captain": "Miguel Fernández López",
+    "dni": "34567890H",
+    "date": "2023/03/20",
+    "hour": "10:30"
+  },
+  {
+    "license": "L21098",
+    "type": "Salida",
+    "harbour": "Puerto N",
+    "installation": "Instalación L",
+    "captain": "Luisa González Ruiz",
+    "dni": "45678901J",
+    "date": "2023/06/05",
+    "hour": "13:15"
+  },
+  {
+    "license": "L87654",
+    "type": "Entrada",
+    "harbour": "Puerto O",
+    "installation": "Instalación M",
+    "captain": "Manuel Rodríguez Martínez",
+    "dni": "56789012K",
+    "date": "2023/09/18",
+    "hour": "16:45"
+  },
+  {
+    "license": "L10987",
+    "type": "Salida",
+    "harbour": "Puerto P",
+    "installation": "Instalación N",
+    "captain": "Natalia Pérez García",
+    "dni": "67890123L",
+    "date": "2023/12/01",
+    "hour": "08:00"
+  },
+  {
+    "license": "L76543",
+    "type": "Entrada",
+    "harbour": "Puerto Q",
+    "installation": "Instalación O",
+    "captain": "Óscar Sánchez Rodríguez",
+    "dni": "78901234M",
+    "date": "2024/02/14",
+    "hour": "14:30"
+  },
+  {
+    "license": "L43210",
+    "type": "Salida",
+    "harbour": "Puerto R",
+    "installation": "Instalación P",
+    "captain": "Patricia Martínez López",
+    "dni": "89012345N",
+    "date": "2024/05/28",
+    "hour": "09:45"
+  },
+  {
+    "license": "L67890",
+    "type": "Entrada",
+    "harbour": "Puerto S",
+    "installation": "Instalación Q",
+    "captain": "Quintín Rodríguez Ruiz",
+    "dni": "90123456P",
+    "date": "2024/09/10",
+    "hour": "18:20"
+  },
+  {
+    "license": "L98765",
+    "type": "Salida",
+    "harbour": "Puerto T",
+    "installation": "Instalación R",
+    "captain": "Rosa García Martínez",
+    "dni": "01234567Q",
+    "date": "2024/12/24",
+    "hour": "11:00"
+  },
+  {
+    "license": "L34567",
+    "type": "Entrada",
+    "harbour": "Puerto U",
+    "installation": "Instalación S",
+    "captain": "Sergio Pérez Rodríguez",
+    "dni": "12345678R",
+    "date": "2025/03/08",
+    "hour": "16:00"
+  },
+  {
+    "license": "L65432",
+    "type": "Salida",
+    "harbour": "Puerto V",
+    "installation": "Instalación T",
+    "captain": "Teresa Sánchez López",
+    "dni": "23456789S",
+    "date": "2025/06/21",
+    "hour": "07:30"
+  },
+  {
+    "license": "L56789",
+    "type": "Entrada",
+    "harbour": "Puerto X",
+    "installation": "Instalación A",
+    "captain": "Ana María Gutiérrez López",
+    "dni": "23456789T",
+    "date": "2023/04/22",
+    "hour": "15:30"
+  },
+  {
+    "license": "L87654",
+    "type": "Salida",
+    "harbour": "Puerto Y",
+    "installation": "Instalación B",
+    "captain": "José Manuel Martínez Ruiz",
+    "dni": "34567890U",
+    "date": "2023/07/06",
+    "hour": "10:45"
+  },
+  {
+    "license": "L32109",
+    "type": "Entrada",
+    "harbour": "Puerto Z",
+    "installation": "Instalación C",
+    "captain": "Clara Rodríguez García",
+    "dni": "45678901V",
+    "date": "2023/10/19",
+    "hour": "18:15"
+  },
+  {
+    "license": "L09876",
+    "type": "Salida",
+    "harbour": "Puerto W",
+    "installation": "Instalación D",
+    "captain": "David Sánchez Martínez",
+    "dni": "56789012W",
+    "date": "2024/01/02",
+    "hour": "12:30"
+  },
+  {
+    "license": "L54321",
+    "type": "Entrada",
+    "harbour": "Puerto V",
+    "installation": "Instalación E",
+    "captain": "Elena Pérez López",
+    "dni": "67890123X",
+    "date": "2024/04/15",
+    "hour": "09:00"
+  },
+  {
+    "license": "L98765",
+    "type": "Salida",
+    "harbour": "Puerto U",
+    "installation": "Instalación F",
+    "captain": "Fernando Rodríguez Ruiz",
+    "dni": "78901234Y",
+    "date": "2024/07/29",
+    "hour": "16:45"
+  },
+  {
+    "license": "L23456",
+    "type": "Entrada",
+    "harbour": "Puerto T",
+    "installation": "Instalación G",
+    "captain": "Gloria Martínez López",
+    "dni": "89012345Z",
+    "date": "2024/11/10",
+    "hour": "13:20"
+  },
+  {
+    "license": "L76543",
+    "type": "Salida",
+    "harbour": "Puerto S",
+    "installation": "Instalación H",
+    "captain": "Hugo Sánchez García",
+    "dni": "90123456A",
+    "date": "2025/02/23",
+    "hour": "08:00"
+  },
+  {
+    "license": "L32109",
+    "type": "Entrada",
+    "harbour": "Puerto R",
+    "installation": "Instalación I",
+    "captain": "Irene Rodríguez Martínez",
+    "dni": "01234567B",
+    "date": "2025/06/08",
+    "hour": "17:30"
+  },
+  {
+    "license": "L65432",
+    "type": "Salida",
+    "harbour": "Puerto Q",
+    "installation": "Instalación J",
+    "captain": "Javier Pérez Ruiz",
+    "dni": "12345678C",
+    "date": "2025/09/21",
+    "hour": "11:15"
+  },
+  {
+    "license": "L98765",
+    "type": "Entrada",
+    "harbour": "Puerto M",
+    "installation": "Instalación K",
+    "captain": "Karla Martínez López",
+    "dni": "23456789D",
+    "date": "2023/05/10",
+    "hour": "14:30"
+  },
+  {
+    "license": "L34567",
+    "type": "Salida",
+    "harbour": "Puerto N",
+    "installation": "Instalación L",
+    "captain": "Lorenzo Sánchez Ruiz",
+    "dni": "34567890E",
+    "date": "2023/08/23",
+    "hour": "09:45"
+  },
+  {
+    "license": "L89012",
+    "type": "Entrada",
+    "harbour": "Puerto O",
+    "installation": "Instalación M",
+    "captain": "Marina Rodríguez García",
+    "dni": "45678901F",
+    "date": "2023/11/05",
+    "hour": "17:15"
+  },
+  {
+    "license": "L45678",
+    "type": "Salida",
+    "harbour": "Puerto P",
+    "installation": "Instalación N",
+    "captain": "Néstor Pérez Martínez",
+    "dni": "56789012G",
+    "date": "2024/02/17",
+    "hour": "11:30"
+  },
+  {
+    "license": "L23456",
+    "type": "Entrada",
+    "harbour": "Puerto Q",
+    "installation": "Instalación O",
+    "captain": "Olga Sánchez López",
+    "dni": "67890123H",
+    "date": "2024/05/31",
+    "hour": "08:00"
+  },
+  {
+    "license": "L78901",
+    "type": "Salida",
+    "harbour": "Puerto R",
+    "installation": "Instalación P",
+    "captain": "Pablo Rodríguez Ruiz",
+    "dni": "78901234I",
+    "date": "2024/09/13",
+    "hour": "16:45"
+  },
+  {
+    "license": "L54321",
+    "type": "Entrada",
+    "harbour": "Puerto S",
+    "installation": "Instalación Q",
+    "captain": "Quirino Martínez García",
+    "dni": "89012345J",
+    "date": "2024/12/27",
+    "hour": "13:20"
+  },
+  {
+    "license": "L21098",
+    "type": "Salida",
+    "harbour": "Puerto T",
+    "installation": "Instalación R",
+    "captain": "Raquel Sánchez López",
+    "dni": "90123456K",
+    "date": "2025/04/10",
+    "hour": "08:00"
+  },
+  {
+    "license": "L87654",
+    "type": "Entrada",
+    "harbour": "Puerto U",
+    "installation": "Instalación S",
+    "captain": "Santiago Pérez Martínez",
+    "dni": "01234567L",
+    "date": "2025/07/23",
+    "hour": "17:30"
+  },
+  {
+    "license": "L10987",
+    "type": "Salida",
+    "harbour": "Puerto V",
+    "installation": "Instalación T",
+    "captain": "Tamara Rodríguez Ruiz",
+    "dni": "12345678M",
+    "date": "2025/11/05",
+    "hour": "11:15"
+  }
+]

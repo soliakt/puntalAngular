@@ -1,0 +1,57 @@
+/* You can add global styles to this file, and also import other style files */
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+body{
+    background-color: var(--background-light);
+    font-family: 'Roboto';
+}
+@font-face {
+    font-family: Roboto;
+    src: url(assets/Roboto/Roboto-Regular.ttf);
+}
+@font-face {
+    font-family: Roboto medium;
+    src: url(assets/Roboto/Roboto-Medium.ttf);
+}
+:root{
+    --background-light: #F3F3F3;
+    --corporate-dark: #05274C;
+    --corporate-blue: #008ECB;
+    --corporate-dark-blue: #092C4C;
+    --corporate-button-blue: #76C4FF;
+    --corporate-gray: #828282;
+    --corporate-red: #FF0000;
+    --corporate-input-placeholder: rgba(0, 0, 0, 0.35);
+    --icon-small{
+        width: 19px;
+        height: 19px;
+    };
+}
+.icon-small{
+        font-size: 19px;
+}
+.button-search{
+    background-color: var(--corporate-button-blue);
+    color:white;
+    font-family: 'Roboto';
+}
+.button-search:hover{
+    background-color: var(--corporate-blue);
+    color:white;
+}
+.dataTables_filter label {
+    font-family: 'Roboto';
+    width: 15rem;
+    display: flex;
+    align-items: center;
+}
+
+.dataTables_filter input::placeholder {
+    font-size: 1rem;
+    color: var(--corporate-input-placeholder);
+}
+
+
