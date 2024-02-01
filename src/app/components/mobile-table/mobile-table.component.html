@@ -1,1 +1,33 @@
-<p>mobile-table works!</p>
+<div class="row">
+    <div class="col shadow rounded me-2 bg-white">
+        <h1 class="ms-4 mt-5 table__title__header">Listado Clientes</h1>
+        <div class="row justify-content-center">
+            <div class="table__content col-md-12 col-sm-8">
+                <table id="generic" class="table table-striped table-borderless">
+                    <thead>
+                        <tr>
+                        <th class="table__header">License</th>
+                        <th class="table__header">Type</th>
+                        <th class="table__header">Captain</th>
+                        <th class="table__header">DNI</th>
+                        <th class="table__header">Harbour</th>
+                        <th class="table__header">Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for(generic of generics;track generic.dni) {
+                            <tr>
+                                <td>{{generic.license}}</td>
+                                <td>{{generic.type}}</td>
+                                <td>{{generic.captain}}</td>
+                                <td>{{generic.dni}}</td>
+                                <td>{{generic.harbour}}</td>
+                                <td>{{generic.date}}</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
