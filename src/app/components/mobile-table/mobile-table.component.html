@@ -1,1 +1,29 @@
-<p>mobile-table works!</p>
+<div class="row">
+    <div class="shadow rounded bg-white">
+        <h1 class="mobile-table__title__header p-2">Listado Clientes</h1>
+        <div class="row">
+            <div class="mobile-table__content table-responsive d-flex">
+                <table id="generic" class="table-striped table-borderless">
+                    <thead>
+                        <tr>
+                        <th class="mobile-table__header">Matricula</th>
+                        <th class="mobile-table__header">Tipo</th>
+                        <th class="mobile-table__header">Pantalan</th>
+                        <th class="mobile-table__header">Amarre</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for(generic of generics;track generic.dni) {
+                            <tr>
+                                <td>{{generic.license}}</td>
+                                <td>{{generic.type}}</td>
+                                <td>{{generic.harbour}}</td>
+                                <td>{{generic.date}}</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
