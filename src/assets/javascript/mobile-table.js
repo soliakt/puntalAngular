@@ -9,7 +9,7 @@ $(function () {
   
       table__generic = $("#generic__mobile").DataTable({
         order: [[0, "desc"]],
-        dom: '<"top form-control border border-0 p-0 "><"border rounded g-0 p-0"rt <"d-flex justify-content-center m-4"p>><"clear">',
+        dom: '<"top form-control border border-0 p-0 "><"border rounded g-0 p-0"rt <"d-flex justify-content-center m-1"p>><"clear">',
         language: {
           infoEmpty: "No records available",
           zeroRecords: "Nothing found",

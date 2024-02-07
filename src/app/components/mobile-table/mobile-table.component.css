@@ -1,6 +1,10 @@
 *{
     font-family: 'Roboto';
 }
+
+td{
+    padding: 5px;
+}
 .mobile-table__row{
     height: 50px;
 }
