@@ -3,10 +3,7 @@
     <h1 class="m-5 content__header fw-bold">Entradas y Salidas</h1>
     <div class="row justify-content-center">
       <div class="table__content col-11 mb-4">
-        <table
-          id="generic"
-          class="table table-striped table-borderless align-middle"
-        >
+        <table id="generic" class="table table-striped table-borderless align-middle">
           <thead>
             <tr>
               <th class="table__header align-middle">Matrícula</th>
@@ -21,28 +18,21 @@
           </thead>
           <tbody>
             @for(generic of generics;track generic.license) {
-            <tr
-              title="Haz click para marcar como leído"
-              class="data__row default__opacity"
-            >
+            <tr title="Haz click para marcar como leído" class="data__row default__opacity" >
               <td>{{ generic.license }}</td>
               <!-- Cambia el color de fondo dependiento de si es entrada o salida -->
               @if(generic.type == "Entrada"){
-              <td>
-                <div
-                  class="arrival d-flex align-items-center justify-content-center"
-                >
-                  <span>{{ generic.type }}</span>
-                </div>
-              </td>
+                <td>
+                  <div class="arrival d-flex align-items-center justify-content-center">
+                    <span>{{ generic.type }}</span>
+                  </div>
+                </td>
               } @else {
-              <td>
-                <div
-                  class="departure d-flex align-items-center justify-content-center"
-                >
-                  <span>{{ generic.type }}</span>
-                </div>
-              </td>
+                <td>
+                  <div class="departure d-flex align-items-center justify-content-center">
+                    <span>{{ generic.type }}</span>
+                  </div>
+                </td>
               }
               <td>{{ generic.harbour }}</td>
               <td>{{ generic.installation }}</td>

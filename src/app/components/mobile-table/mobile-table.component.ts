@@ -30,7 +30,7 @@ export class MobileTableComponent implements OnInit{
   loadTableJS() {
     const script = this.renderer.createElement('script');
     script.type = 'text/javascript';
-    script.src = './assets/javascript/table.js';
+    script.src = './assets/javascript/mobile-table.js';
     script.defer = true;
     this.renderer.appendChild(this.el.nativeElement, script);
   }

@@ -12,7 +12,7 @@ $(function () {
       columnDefs: [
         {
           targets: [6],
-          orderData: [6, 7],
+          orderData: [6, 7]
         },
       ],
       dom: '<"top form-control border border-0 p-0 "f><"border rounded g-0 p-0"rt <"d-flex justify-content-center m-4"p>><"clear">',
