@@ -47,26 +47,6 @@ $(function () {
       table__generic.search($("#buscarGenericInput").val()).draw();
     });
   
-    //Función para cambiar disminuir la opacidad la fila
-    function opacity() {
-      $(document).on("click", ".default__opacity", function () {
-        $(this).css("opacity", 0.3);
-        $(this).addClass("restore");
-        $(this).removeClass("default__opacity");
-        restore__opacity();
-      });
-    }
-  
-    //Función para restaurar la opacidad por defecto de la fila
-    function restore__opacity() {
-      $(document).on("click", ".restore", function () {
-        $(this).css("opacity", 1);
-        $(this).addClass("default__opacity");
-        $(this).removeClass("restore");
-        opacity();
-      });
-    }
-  
     $(document).ready(function () {
       $(".data__row").css("cursor", "pointer");
       $(".data__row").hover(function () {
@@ -74,14 +54,6 @@ $(function () {
           $(this).tooltip();
         }, 5000);
       });
-    });
-  
-    opacity();
-    restore__opacity();
-  
-    //Función para bajar la opacidad al marcar el checkbox
-    $(".checkbox__select").change(function () {
-      $("tr td").css("opacity", this.checked ? 0.3 : 1);
     });
   });
   
