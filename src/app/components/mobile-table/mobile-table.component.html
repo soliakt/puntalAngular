@@ -1,20 +1,19 @@
 <div class="row">
     <div class="shadow rounded bg-white">
-        <h1 class="mobile-table__title__header p-2">Listado Clientes</h1>
-        <div class="row">
-            <div class="mobile-table__content table-responsive d-flex">
-                <table id="generic" class="table-striped table-borderless">
+        <h1 class="mobile-table__title__header font-weight-bold p-2">Entradas y salidas</h1>
+            <div class="table-responsive text-center">
+                <table id="generic" class="table-striped table-borderless mobile-table__content w-100">
                     <thead>
                         <tr>
-                        <th class="mobile-table__header">Matricula</th>
-                        <th class="mobile-table__header">Tipo</th>
-                        <th class="mobile-table__header">Pantalan</th>
-                        <th class="mobile-table__header">Amarre</th>
+                            <th class="mobile-table__header text-center">Matricula</th>
+                            <th class="mobile-table__header text-center">Tipo</th>
+                            <th class="mobile-table__header text-center">Pantalan</th>
+                            <th class="mobile-table__header text-center">Amarre</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @for(generic of generics;track generic.dni) {
-                            <tr>
+                        @for(generic of generics;track generic.license) {
+                            <tr class="mobile-table__row">
                                 <td>{{generic.license}}</td>
                                 <td>{{generic.type}}</td>
                                 <td>{{generic.harbour}}</td>
@@ -24,6 +23,5 @@
                     </tbody>
                 </table>
             </div>
-        </div>
     </div>
 </div>
