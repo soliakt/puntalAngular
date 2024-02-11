@@ -12,7 +12,7 @@ $(function () {
       columnDefs: [
         {
           targets: [6],
-          orderData: [6, 7]
+          orderData: [6, 7],
         },
       ],
       dom: '<"top form-control border border-0 p-0 "f><"border rounded g-0 p-0"rt <"d-flex justify-content-center m-4"p>><"clear">',
@@ -29,6 +29,36 @@ $(function () {
       pagingType: "simple_numbers",
       search: {
         return: true,
+      },
+      drawCallback: function () {
+        var api = this.api();
+        var pageInfo = api.page.info();
+
+        var paginationHtml = '<ul class="pagination">';
+        paginationHtml +=
+          '<li class="page-item ' +
+          (pageInfo.page === 0 ? "disabled" : "") +
+          '"><a class="page-link border-0" style="cursor: pointer;" onclick="tablePage(' +
+          (pageInfo.page - 1) +
+          ')">&lt;</a></li>';
+
+        paginationHtml +=
+          '<li class="page-item"><span class="page-link border-0">' +
+          (pageInfo.page + 1) +
+          " de " +
+          pageInfo.pages +
+          "</span></li>";
+
+        paginationHtml +=
+          '<li class="page-item ' +
+          (pageInfo.page === pageInfo.pages - 1 ? "disabled" : "") +
+          '"><a class="page-link border-0" style="cursor: pointer;" onclick="tablePage(' +
+          (pageInfo.page + 1) +
+          ')">&gt;</a></li>';
+
+        paginationHtml += "</ul>";
+
+        $(".dataTables_paginate").html(paginationHtml);
       },
       //Añadir clases y elementos adicionales a la barra de búsqueda
       initComplete: function () {
@@ -96,4 +126,14 @@ $(function () {
   $(".checkbox__select").change(function () {
     $("tr td").css("opacity", this.checked ? 0.3 : 1);
   });
+});
+
+function tablePage(pageNumber) {
+  var employee = $("#generic").DataTable();
+  employee.page(pageNumber).draw(false);
+}
+
+$(document).on("click", ".pagination .page-link", function () {
+  var pageNumber = $(this).parent().index();
+  tablePage(pageNumber);
 });

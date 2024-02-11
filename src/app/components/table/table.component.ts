@@ -16,7 +16,7 @@ export class TableComponent implements OnInit{
   generics: Generic[] =[];
 
   constructor(private genericsService: GenericsService, private renderer: Renderer2, private el: ElementRef) {
-    this.recover();
+    this.recover()
   }
 
   ngOnInit() {
