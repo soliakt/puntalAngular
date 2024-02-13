@@ -1,40 +1,44 @@
-import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
-import { RefreshService } from '../../services/refresh/refresh.service';
+import { Component } from "@angular/core";
+import { FormsModule } from "@angular/forms";
+import { Router } from "@angular/router";
+import { HttpClientModule } from "@angular/common/http";
+import { HttpClient } from "@angular/common/http";
+import { RefreshService } from "../../services/refresh/refresh.service";
 
 @Component({
-  selector: 'app-login',
+  selector: "app-login",
   standalone: true,
-  template: '',
-  imports: [FormsModule],
-  templateUrl: './login.component.html',
-  styleUrl: './login.component.css'
+  template: "",
+  imports: [FormsModule, HttpClientModule],
+  templateUrl: "./login.component.html",
+  styleUrl: "./login.component.css",
 })
 export class LoginComponent {
-  loginValue: string = '';
-  passwordValue: string = '';
-  constructor(private router: Router, private refreshService: RefreshService) {
+  loginObj: Login;
 
+  constructor(private http: HttpClient, private router: Router) {
+    this.loginObj = new Login();
   }
-  check__login(){
-    if(this.loginValue=="aduana"){
-      if(this.passwordValue=="aduana"){
-        this.refreshService.set__source('login');
-        this.router.navigate(['/aduana']);
-      } else {
-        alert("Credenciales incorrectas");
-      }
-    }else if(this.loginValue == "guardamuelle"){
-      if(this.passwordValue == "guardamuelle"){
-        this.router.navigate(['/guardamuelle']);
-      } else{
-        alert("Credenciales incorrectas");
-      }
-    } else {
-      console.log("No login");
-    }
+  check__login() {
+    this.http
+      .post("http://127.0.0.1:8000/api/employee/login", this.loginObj)
+      .subscribe((res: any) => {
+        if (res.result) {
+          console.log("Login realizado con exito");
+          localStorage.setItem("loginToken", res.data.token);
+          this.router.navigateByUrl("/aduanas");
+        } else {
+          console.log(res.message);
+        }
+      });
   }
-
 }
 
+export class Login {
+  email: string;
+  password: string;
+  constructor() {
+    this.email = "";
+    this.password = "";
+  }
+}

@@ -18,9 +18,9 @@
         <input
           type="text"
           class="form-control border border-dark-subtle"
-          name="login"
+          name="email"
           id="login"
-          [(ngModel)]="loginValue"
+          [(ngModel)]="loginObj.email"
         />
       </div>
       <label for="password" class="form-label">Contraseña</label>
@@ -35,7 +35,7 @@
           class="form-control border border-end-0 border-dark-subtle"
           name="password"
           id="password"
-          [(ngModel)]="passwordValue"
+          [(ngModel)]="loginObj.password"
         />
         <span
           class="input-group-text bg-white border border-start-0 border-dark-subtle"
