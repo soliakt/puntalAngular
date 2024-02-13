@@ -24,9 +24,29 @@ export class LoginComponent {
       .post("http://127.0.0.1:8000/api/employee/login", this.loginObj)
       .subscribe((res: any) => {
         if (res.result) {
-          console.log("Login realizado con exito");
-          localStorage.setItem("loginToken", res.data.token);
-          this.router.navigateByUrl("/aduanas");
+          console.log(res.rolename.role);
+
+          if (res.rolename.role == "Concesionario") {
+            return console.log(
+              "Te estás intentando loguear como Concesionario"
+            );
+          }
+
+          if (res.rolename.role == "Administrativo") {
+            return console.log(
+              "Te estás intentando loguear como Administrativo"
+            );
+          }
+
+          if (res.rolename.role == "Aduanas") {
+            localStorage.setItem("loginToken", res.data.token);
+            this.router.navigateByUrl("/aduana");
+          }
+
+          if (res.rolename.role == "Guardamuelles") {
+            localStorage.setItem("loginToken", res.data.token);
+            this.router.navigateByUrl("/guardamuelles");
+          }
         } else {
           console.log(res.message);
         }
