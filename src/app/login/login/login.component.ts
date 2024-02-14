@@ -28,12 +28,14 @@ export class LoginComponent {
           localStorage.setItem("loginToken", res.data.token);
           localStorage.setItem("employeeRole", res.rolename.role);
           if (res.rolename.role == "Concesionario") {
+            window.location.href = "http://127.0.0.1:8000/concessionaire";
             return console.log(
               "Te estás intentando loguear como Concesionario"
             );
           }
 
           if (res.rolename.role == "Administrativo") {
+            window.location.href = "http://127.0.0.1:8000/administrativo";
             return console.log(
               "Te estás intentando loguear como Administrativo"
             );
