@@ -4,10 +4,16 @@ import { AduanaComponent } from "./users/aduana/aduana.component";
 import { GuardamuelleComponent } from "./users/guardamuelle/guardamuelle.component";
 import { PasswordRecoveryComponent } from "./login/password-recovery/password-recovery.component";
 import { PasswordResetComponent } from "./login/password-reset/password-reset.component";
+import { aduanaGuard } from "./guards/aduana.guard";
+import { guardamuellesGuard } from "./guards/guardamuelles.guard";
 
 export const routes: Routes = [
   {
     path: "",
+    component: LoginComponent,
+  },
+  {
+    path: "login",
     component: LoginComponent,
   },
   {
@@ -21,9 +27,11 @@ export const routes: Routes = [
   {
     path: "aduana",
     component: AduanaComponent,
+    canActivate: [aduanaGuard],
   },
   {
     path: "guardamuelle",
     component: GuardamuelleComponent,
+    canActivate: [guardamuellesGuard],
   },
 ];

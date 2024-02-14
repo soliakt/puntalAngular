@@ -25,7 +25,8 @@ export class LoginComponent {
       .subscribe((res: any) => {
         if (res.result) {
           console.log(res.rolename.role);
-
+          localStorage.setItem("loginToken", res.data.token);
+          localStorage.setItem("employeeRole", res.rolename.role);
           if (res.rolename.role == "Concesionario") {
             return console.log(
               "Te estás intentando loguear como Concesionario"
@@ -39,13 +40,11 @@ export class LoginComponent {
           }
 
           if (res.rolename.role == "Aduanas") {
-            localStorage.setItem("loginToken", res.data.token);
             this.router.navigateByUrl("/aduana");
           }
 
           if (res.rolename.role == "Guardamuelles") {
-            localStorage.setItem("loginToken", res.data.token);
-            this.router.navigateByUrl("/guardamuelles");
+            this.router.navigateByUrl("/guardamuelle");
           }
         } else {
           console.log(res.message);
