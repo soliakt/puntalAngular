@@ -1,8 +1,3 @@
-*{
-    font-family: 'Roboto';
-}
-
-
 .navbar {
     height: 75px;
     background: var(--corporate-dark);
