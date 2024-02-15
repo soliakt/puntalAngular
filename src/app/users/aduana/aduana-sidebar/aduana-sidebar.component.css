@@ -7,7 +7,7 @@
   overflow-y: auto;
 }
 .sidebar__content__userinfo {
-  background-color: white;
+  background-color: white !important;
   border-radius: 6px;
 }
 .sidebar__content__userinfoPic {
@@ -16,7 +16,7 @@
 }
 
 .sidebar__content__optionsSelected {
-  background-color: white;
+  background-color: white !important;
   border-radius: 6px;
   color: var(--corporate-blue);
 }

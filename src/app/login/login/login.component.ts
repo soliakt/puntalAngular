@@ -25,27 +25,28 @@ export class LoginComponent {
       .subscribe((res: any) => {
         if (res.result) {
           console.log(res.rolename.role);
-
+          localStorage.setItem("loginToken", res.data.token);
+          localStorage.setItem("employeeRole", res.rolename.role);
           if (res.rolename.role == "Concesionario") {
+            window.location.href = "http://127.0.0.1:8000/concessionaire";
             return console.log(
               "Te estás intentando loguear como Concesionario"
             );
           }
 
           if (res.rolename.role == "Administrativo") {
+            window.location.href = "http://127.0.0.1:8000/administrativo";
             return console.log(
               "Te estás intentando loguear como Administrativo"
             );
           }
 
           if (res.rolename.role == "Aduanas") {
-            localStorage.setItem("loginToken", res.data.token);
             this.router.navigateByUrl("/aduana");
           }
 
           if (res.rolename.role == "Guardamuelles") {
-            localStorage.setItem("loginToken", res.data.token);
-            this.router.navigateByUrl("/guardamuelles");
+            this.router.navigateByUrl("/guardamuelle");
           }
         } else {
           console.log(res.message);
