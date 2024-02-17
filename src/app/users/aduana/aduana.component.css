@@ -1,3 +1,3 @@
-body {
-  background-color: #ececec !important;
+app-root {
+  background-color: --background-light !important;
 }

@@ -1,9 +1,15 @@
 import { CanActivateFn } from "@angular/router";
 
 export const aduanaGuard: CanActivateFn = (route, state) => {
-  let role = localStorage.getItem("employeeRole");
-  if (role == "Aduanas") {
-    return true;
+  if (
+    typeof localStorage !== "undefined" &&
+    localStorage.getItem("employeeRole")
+  ) {
+    if (localStorage.getItem("employeeRole") == "Aduanas") {
+      return true;
+    } else {
+      return false;
+    }
   } else {
     return false;
   }
