@@ -1,6 +1,8 @@
-import { Component, OnInit, ElementRef, Renderer2 } from '@angular/core';
+import { Component, OnInit, OnDestroy, ElementRef, Renderer2 } from '@angular/core';
 import { Generic } from '../../interfaces/generic';
 import { GenericsService } from '../../services/generics/generics.service';
+import { MobileSectionService } from '../../services/mobile-section/mobile-section.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-mobile-table',
@@ -10,20 +12,33 @@ import { GenericsService } from '../../services/generics/generics.service';
   styleUrl: './mobile-table.component.css'
 })
 export class MobileTableComponent {
-  //Construir array de la interfaz
-  generics: Generic[] =[];
+  generics: Generic[] = [];
+  selectedItem: string | undefined;
+  private subscription: Subscription = new Subscription();
 
-  constructor(private genericsService: GenericsService, private renderer: Renderer2, private el: ElementRef) {
-    this.recover();
-  }
+  constructor(
+    private genericsService: GenericsService,
+    private mobilesectionService: MobileSectionService,
+    private renderer: Renderer2,
+    private el: ElementRef
+  ) {}
 
   ngOnInit() {
+    this.recover();
     this.loadTableJS();
+
+    this.subscription = this.mobilesectionService.selectedItem$.subscribe(item => {
+      this.selectedItem = item;
+    });
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 
   recover() {
     this.genericsService.returnService().subscribe((generics: Generic[]) => {
-      this.generics = generics
+      this.generics = generics;
     });
   }
 
