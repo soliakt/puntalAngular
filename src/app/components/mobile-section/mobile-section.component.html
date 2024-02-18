@@ -1,18 +1,26 @@
 <div class="container-fluid">
     <div class="mobile-section__content p-2 justify-content-center align-items-center">
-        <ul class="nav nav-pills">
-            <li class="nav-item mobile-section__active">
-                <a class="nav-link" href="#">Inicio</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Entradas</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Salidas</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Registros</a>
-            </li>
-        </ul>
+      <ul class="nav nav-pills">
+        <li class="nav-item mobile-section__active">
+          <a class="nav-link" (click)="selectItem('Inicio')">Inicio</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" (click)="selectItem('Entradas')">Entradas</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" (click)="selectItem('Salidas')">Salidas</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link">Registros</a>
+        </li>
+      </ul>
     </div>
-</div>
+  </div>
+  <script>
+    $(document).ready(function() {
+    $('.nav-link').on('click', function() {
+        $('.nav-item').removeClass('mobile-section__active');
+        $(this).parent('li').addClass('mobile-section__active');
+    });
+    });
+  </script>

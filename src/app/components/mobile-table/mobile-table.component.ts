@@ -8,7 +8,7 @@ import { Subscription } from 'rxjs';
   templateUrl: './mobile-table.component.html',
   styleUrls: ['./mobile-table.component.css']
 })
-export class MobileTableComponent {
+export class MobileTableComponent implements OnInit, OnDestroy {
   data: any[] = [];
   selectedItem: string | undefined;
   private subscription: Subscription = new Subscription();
@@ -21,22 +21,36 @@ export class MobileTableComponent {
   ) {}
 
   ngOnInit() {
+    this.subscribeToSelectedItem();
     this.recover();
     this.loadTableJS();
-
-    this.subscription = this.mobilesectionService.selectedItem$.subscribe(item => {
-      this.selectedItem = item;
-    });
   }
 
   ngOnDestroy() {
     this.subscription.unsubscribe();
   }
 
-  recover() {
-    this.apiLaravelService.getReservationInfoFiltered().subscribe((data: any[]) => {
-      this.data = data;
+  subscribeToSelectedItem() {
+    this.subscription = this.mobilesectionService.selectedItem$.subscribe(item => {
+      this.selectedItem = item;
+      this.recover();
     });
+  }
+
+  recover() {
+    if (this.selectedItem === 'Entradas') {
+      this.apiLaravelService.getReservationInfoFiltered().subscribe((data: any[]) => {
+        this.data = data.filter(item => !item.date_entry_confirmed);
+      });
+    } else if (this.selectedItem === 'Salidas') {
+      this.apiLaravelService.getReservationInfoFiltered().subscribe((data: any[]) => {
+        this.data = data.filter(item => !item.date_exit_confirmed);
+      });
+    } else {
+      this.apiLaravelService.getReservationInfoFiltered().subscribe((data: any[]) => {
+        this.data = data;
+      });
+    }
   }
 
   loadTableJS() {
