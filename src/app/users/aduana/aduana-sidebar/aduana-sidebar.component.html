@@ -9,7 +9,9 @@
           src="assets/pfps/pfp-default.png"
           alt=""
         />
-        <span class="d-block text-center pt-2 fw-bold">Fuerzas del estado</span>
+        @if (username){
+        <span class="d-block text-center pt-2 fw-bold">{{ username }}</span>
+        }
       </div>
       <div class="sidebar__content__options mt-3">
         <div

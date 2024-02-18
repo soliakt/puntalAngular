@@ -45,6 +45,7 @@ export class LoginComponent {
           if (res.status !== "Inactivo") {
             localStorage.setItem("loginToken", res.data.token);
             localStorage.setItem("employeeRole", res.rolename);
+            localStorage.setItem("employeeName", res.name);
 
             if (res.rolename == "Aduanas") {
               this.router.navigateByUrl("/aduana");

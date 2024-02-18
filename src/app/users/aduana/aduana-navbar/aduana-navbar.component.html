@@ -11,7 +11,9 @@
           <div
             class="navbar__userinfo__circleLetter d-flex justify-content-center align-items-center"
           >
-            <span>A</span>
+            @if(letter){
+            <span>{{ letter }}</span>
+            }
           </div>
         </div>
 
@@ -19,10 +21,14 @@
           class="navbar__userinfo__userdata d-flex flex-column justify-content-around ms-2"
         >
           <div class="navbar__userinfo__username mt-1">
-            <span>Fuerzas del estado</span>
+            @if(username){
+            <span>{{ username }}</span>
+            }
           </div>
           <div class="navbar__userinfo__role my-2">
-            <span>Aduanas</span>
+            @if(role){
+            <span>{{ role }}</span>
+            }
           </div>
         </div>
       </div>
@@ -31,6 +37,8 @@
 </nav>
 <div class="row sidebar__content__title fw-bold fs-4 my-3 ms-3 mx-auto pe-0">
   <div class="col-auto d-none d-sm-block">
-    <span>Aduanas</span>
+    @if(role){
+    <span>{{ role }}</span>
+    }
   </div>
 </div>
