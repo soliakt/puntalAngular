@@ -13,25 +13,25 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @for(generic of generics;track generic.license) {
+                        @for(item of data;track item.hin) {
                             <tr class="mobile-table__row">
-                                <td>{{generic.license}}</td>
-                                @if(generic.type == 'Entrada'){
+                                <td>{{item.hin}}</td>
+                                @if(item.date_entry_confirmed == null){
                                     <td>
                                         <div class="arrival d-flex justify-content-center">
-                                            <span>{{generic.type}}</span>
+                                            <span>Entrada</span>
                                         </div>
                                     </td>
                                 }
                                 @else{
                                     <td>
                                         <div class="departure d-flex justify-content-center">
-                                            <span>{{generic.type}}</span>
+                                            <span>Salida</span>
                                         </div>
                                     </td>
                                 }
-                                <td>{{generic.harbour}}</td>
-                                <td>{{generic.date}}</td>
+                                <td>{{item.dock}}</td>
+                                <td>{{item.berth}}</td>
                             </tr>
                         }
                     </tbody>

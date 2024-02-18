@@ -1,23 +1,20 @@
 import { Component, OnInit, OnDestroy, ElementRef, Renderer2 } from '@angular/core';
-import { Generic } from '../../interfaces/generic';
-import { GenericsService } from '../../services/generics/generics.service';
+import { ApiLaravelService } from '../../services/api-laravel/api-laravel.service';
 import { MobileSectionService } from '../../services/mobile-section/mobile-section.service';
 import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-mobile-table',
-  standalone: true,
-  imports: [],
   templateUrl: './mobile-table.component.html',
-  styleUrl: './mobile-table.component.css'
+  styleUrls: ['./mobile-table.component.css']
 })
 export class MobileTableComponent {
-  generics: Generic[] = [];
+  data: any[] = [];
   selectedItem: string | undefined;
   private subscription: Subscription = new Subscription();
 
   constructor(
-    private genericsService: GenericsService,
+    private apiLaravelService: ApiLaravelService,
     private mobilesectionService: MobileSectionService,
     private renderer: Renderer2,
     private el: ElementRef
@@ -37,8 +34,8 @@ export class MobileTableComponent {
   }
 
   recover() {
-    this.genericsService.returnService().subscribe((generics: Generic[]) => {
-      this.generics = generics;
+    this.apiLaravelService.getReservationInfoFiltered().subscribe((data: any[]) => {
+      this.data = data;
     });
   }
 

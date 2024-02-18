@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { MobileSectionService } from '../../services/mobile-section/mobile-section.service';}
+import { MobileSectionService } from '../../services/mobile-section/mobile-section.service';
 
 
 @Component({
