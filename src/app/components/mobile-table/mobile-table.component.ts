@@ -1,4 +1,6 @@
 import { Component, OnInit, OnDestroy, ElementRef, Renderer2 } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { ApiLaravelService } from '../../services/api-laravel/api-laravel.service';
 import { MobileSectionService } from '../../services/mobile-section/mobile-section.service';
 import { Subscription } from 'rxjs';
@@ -11,33 +13,58 @@ import { Subscription } from 'rxjs';
 export class MobileTableComponent implements OnInit, OnDestroy {
   data: any[] = [];
   selectedItem: string | undefined;
-  private subscription: Subscription = new Subscription();
+  subscription: Subscription = new Subscription();
+  selectedTitleItem: string = 'Próximas entradas y salidas';
+  showForm: boolean = false;
+  dataSelectionRow: any;
+  form: FormGroup;
 
   constructor(
     private apiLaravelService: ApiLaravelService,
     private mobilesectionService: MobileSectionService,
     private renderer: Renderer2,
-    private el: ElementRef
-  ) {}
+    private el: ElementRef,
+    private fb: FormBuilder,
+  ) {
+    this.form = this.fb.group({
+      plate: [''],
+      captain_name: [''],
+      captain_id: [''],
+      harbour: [''],
+      berth: ['']
+    });
+  }
 
-  ngOnInit() {
+  ngOnInit(){
     this.subscribeToSelectedItem();
     this.recover();
     this.loadTableJS();
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(){
     this.subscription.unsubscribe();
   }
 
-  subscribeToSelectedItem() {
+  subscribeToSelectedItem(){
     this.subscription = this.mobilesectionService.selectedItem$.subscribe(item => {
       this.selectedItem = item;
+      this.selectedTitleItem = this.getSelectedTitle(item);
       this.recover();
     });
   }
 
-  recover() {
+  getSelectedTitle(item: string): string {
+    switch (item) {
+      case 'Entradas':
+        return 'Próximas entradas';
+      case 'Salidas':
+        return 'Próximas salidas';
+      default:
+        return 'Próximas entradas y salidas';
+    }
+  }
+
+  recover(){
     if (this.selectedItem === 'Entradas') {
       this.apiLaravelService.getReservationInfoFiltered().subscribe((data: any[]) => {
         this.data = data.filter(item => !item.date_entry_confirmed);
@@ -53,11 +80,25 @@ export class MobileTableComponent implements OnInit, OnDestroy {
     }
   }
 
-  loadTableJS() {
+  loadTableJS(){
     const script = this.renderer.createElement('script');
     script.type = 'text/javascript';
     script.src = './assets/javascript/mobile-table.js';
     script.defer = true;
     this.renderer.appendChild(this.el.nativeElement, script);
   }
+
+  onRowClick(index: number){
+    this.showForm = true;
+    this.dataSelectionRow = this.data[index];
+    this.form.setValue({
+      plate: this.dataSelectionRow.hin,
+      captain_name: this.dataSelectionRow.name_captain,
+      captain_id: this.dataSelectionRow.id_captain,
+      harbour: this.dataSelectionRow.dock_name,
+      berth: this.dataSelectionRow.berth_name
+    });
+  }
+  
+
 }
