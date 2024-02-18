@@ -44,7 +44,7 @@ export class MobileTableComponent implements OnInit, OnDestroy {
       });
     } else if (this.selectedItem === 'Salidas') {
       this.apiLaravelService.getReservationInfoFiltered().subscribe((data: any[]) => {
-        this.data = data.filter(item => !item.date_exit_confirmed);
+        this.data = data.filter(item => !item.date_exit_confirmed && item.date_entry_confirmed);
       });
     } else {
       this.apiLaravelService.getReservationInfoFiltered().subscribe((data: any[]) => {

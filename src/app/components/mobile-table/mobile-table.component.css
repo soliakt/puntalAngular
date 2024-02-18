@@ -25,3 +25,7 @@ td{
 .mobile-table__title__header{
     font-weight: 600;
 }
+
+.dataTables_empty {
+    display: none;
+}
