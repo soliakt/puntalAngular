@@ -1,0 +1,27 @@
+*{
+    font-family: 'Roboto';
+}
+
+td{
+    padding: 5px;
+}
+.mobile-table__row{
+    height: 50px;
+}
+.arrival{
+    background-color: #76c4ff;
+    height: 25px;
+    width: 60px;
+    border-radius: 3px;
+}
+
+.departure{
+    background-color: #e58200;
+    height: 25px;
+    width: 60px;
+    border-radius: 3px;
+}
+
+.mobile-table__title__header{
+    font-weight: 600;
+}
