@@ -2,9 +2,8 @@
 
 $(function () {
   var table__generic;
-
+  
   function initialize__table() {
-    //Primero destruye la tabla si ya existe, asi evitamos errores cuando se refresca la pagina
     $("#generic__mobile").DataTable().destroy();
 
     table__generic = $("#generic__mobile").DataTable({

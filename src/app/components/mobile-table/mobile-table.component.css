@@ -48,7 +48,3 @@ td{
     background-color: white !important;
     color: var(--corporate-blue);
 }
-
-.dataTables_empty {
-    display: none;
-}

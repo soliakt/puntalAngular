@@ -1,9 +1,9 @@
-import { Component, OnInit, OnDestroy, ElementRef, Renderer2 } from '@angular/core';
+import { Component, OnInit, OnDestroy, ElementRef, Renderer2, Output, EventEmitter, Inject } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ApiLaravelService } from '../../services/api-laravel/api-laravel.service';
 import { MobileSectionService } from '../../services/mobile-section/mobile-section.service';
-import { RefreshService } from '../../services/refresh/refresh.service';
 import { Subscription } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-mobile-table',
@@ -15,16 +15,15 @@ export class MobileTableComponent implements OnInit, OnDestroy {
   selectedItem: string | undefined;
   subscription: Subscription = new Subscription();
   selectedTitleItem: string = 'Próximas entradas y salidas';
-  showForm: boolean = false;
   dataSelectionRow: any;
   form: FormGroup;
-  reservationId: any;
+  @Output() rowDataSelected: EventEmitter<any> = new EventEmitter<any>();
 
   constructor(
     private apiLaravelService: ApiLaravelService,
     private mobilesectionService: MobileSectionService,
-    private refreshService: RefreshService,
     private renderer: Renderer2,
+    private router: Router,
     private el: ElementRef,
     private fb: FormBuilder,
   ) {
@@ -40,7 +39,6 @@ export class MobileTableComponent implements OnInit, OnDestroy {
   ngOnInit(){
     this.subscribeToSelectedItem();
     this.recover();
-    this.loadTableJS();
   }
 
   ngOnDestroy(){
@@ -72,18 +70,22 @@ export class MobileTableComponent implements OnInit, OnDestroy {
     const today = new Date().toISOString().slice(0, 10);
     if (this.selectedItem === 'Entradas') {
       this.apiLaravelService.getReservationInfoFiltered().subscribe((data: any[]) => {
+        this.loadTableJS();
         this.data = data.filter(item => !item.date_entry_confirmed);
       });
     } else if (this.selectedItem === 'Salidas') {
       this.apiLaravelService.getReservationInfoFiltered().subscribe((data: any[]) => {
+        this.loadTableJS();
         this.data = data.filter(item => !item.date_exit_confirmed && item.date_entry_confirmed);
       });
     } else if (this.selectedItem === 'Registros') {
       this.apiLaravelService.getReservationInfoFiltered().subscribe((data: any[]) => {
+        this.loadTableJS();
         this.data = data.filter(item => item.date_entry_confirmed === today && !item.date_exit_confirmed);
       });
     } else {
       this.apiLaravelService.getReservationInfoFiltered().subscribe((data: any[]) => {
+        this.loadTableJS();
         this.data = data;
       });
     }
@@ -98,37 +100,9 @@ export class MobileTableComponent implements OnInit, OnDestroy {
   }
 
   onRowClick(index: number){
-    this.refreshService.set__source('mobile-table');
-    this.showForm = true;
     this.dataSelectionRow = this.data[index];
-    this.form.setValue({
-      plate: this.dataSelectionRow.hin,
-      captain_name: this.dataSelectionRow.name_captain,
-      captain_id: this.dataSelectionRow.id_captain,
-      harbour: this.dataSelectionRow.dock_name,
-      berth: this.dataSelectionRow.berth_name
-    });
-    this.reservationId = this.dataSelectionRow.id_reservation;
-  }
-
-  onVolverClick(){
-    this.showForm = false;
-    const source = this.refreshService.get__source();
-    if (source === 'mobile-table') {
-      this.recover();
-    }
-  }
-
-  onRegisterClick(reservation_id : number){
-    this.apiLaravelService.updateReservationConfirmation(reservation_id).subscribe(
-      (response) => {
-        console.log('Confirmación completada:', response);
-      },
-      (error) => {
-        console.error('Error al confirmar:', error);
-      }
-    );
-    
-    this.showForm = false;
+    this.rowDataSelected.emit(this.dataSelectionRow);
+    this.router.navigate(['/mobile-form']);
+    console.log('After navigation');
   }
 }
