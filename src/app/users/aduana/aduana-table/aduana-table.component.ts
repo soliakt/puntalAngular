@@ -4,9 +4,6 @@ import { Component, OnInit, ElementRef, Renderer2 } from "@angular/core";
 import { Generic } from "../../../interfaces/generic";
 import { GenericsService } from "../../../services/generics/generics.service";
 import { RouterOutlet } from "@angular/router";
-import { Subscription } from "rxjs";
-import { ApiLaravelService } from "../../../services/api-laravel/api-laravel.service";
-import { MobileSectionService } from "../../../services/mobile-section/mobile-section.service";
 
 @Component({
   selector: "app-aduana-table",
@@ -17,47 +14,23 @@ import { MobileSectionService } from "../../../services/mobile-section/mobile-se
 })
 export class AduanaTableComponent implements OnInit {
   //Construir array de la interfaz
-  data: any[] = [];
-  selectedItem: string | undefined;
-  private subscription: Subscription = new Subscription();
+  generics: Generic[] = [];
 
   constructor(
     private genericsService: GenericsService,
     private renderer: Renderer2,
-    private el: ElementRef,
-    private apiLaravelService: ApiLaravelService,
-    private mobilesectionService: MobileSectionService
-  ) {
+    private el: ElementRef
+  ) {}
+
+  ngOnInit() {
+    this.loadTableJS();
     this.recover();
   }
 
-  ngOnInit() {
-    this.subscribeToSelectedItem();
-    this.recover();
-    this.loadTableJS();
-  }
-  subscribeToSelectedItem() {
-    this.subscription = this.mobilesectionService.selectedItem$.subscribe(
-      (item) => {
-        this.selectedItem = item;
-        this.recover();
-      }
-    );
-  }
   recover() {
-    if (this.selectedItem === "Entradas") {
-      this.apiLaravelService.getLogsFiltered().subscribe((data: any[]) => {
-        this.data = data.filter((item) => !item.date_entry_confirmed);
-      });
-    } else if (this.selectedItem === "Salidas") {
-      this.apiLaravelService.getLogsFiltered().subscribe((data: any[]) => {
-        this.data = data.filter((item) => !item.date_exit_confirmed);
-      });
-    } else {
-      this.apiLaravelService.getLogsFiltered().subscribe((data: any[]) => {
-        this.data = data;
-      });
-    }
+    this.genericsService.getLogsFiltered().subscribe((generics: Generic[]) => {
+      this.generics = generics;
+    });
   }
 
   loadTableJS() {
