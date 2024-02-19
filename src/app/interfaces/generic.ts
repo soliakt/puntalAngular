@@ -8,4 +8,5 @@ export interface Generic {
   installation_name: string;
   name_captain: string;
   id_captain: number;
+  hour_log: string;
 }
