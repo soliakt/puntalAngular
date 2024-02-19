@@ -19,4 +19,17 @@ export class GenericsService {
       `${this.urlApi}/reservation/all/getLogsFiltered`
     );
   }
+  markAsSeen(reservationId: number) {
+    return this.http.put<Generic[]>(
+      `${this.urlApi}/reservation/markLogAsSeen/${reservationId}`,
+      {}
+    );
+  }
+
+  markPageAsSeen() {
+    return this.http.put<Generic[]>(
+      `${this.urlApi}/reservation/markLogPageAsSeen`,
+      {}
+    );
+  }
 }

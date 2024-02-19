@@ -1,6 +1,7 @@
 // Estructura de los datos a importar
 
 export interface Generic {
+  id_reservation: number;
   hin: number;
   date_entry_confirmed: string;
   date_exit_confirmed: string;
