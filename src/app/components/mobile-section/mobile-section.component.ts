@@ -9,7 +9,10 @@ import { MobileSectionService } from '../../services/mobile-section/mobile-secti
 export class MobileSectionComponent {
   constructor(private mobileSectionService: MobileSectionService) {}
 
-  selectItem(item: string) {
+  selectItem(item: string, event: MouseEvent) {
+    const navItems = document.querySelectorAll('.nav-item');
+    navItems.forEach(navItem => navItem.classList.remove('mobile-section__active'));
+    (event.target as HTMLElement).parentElement?.classList.add('mobile-section__active');
     this.mobileSectionService.selectItem(item);
   }
 }
