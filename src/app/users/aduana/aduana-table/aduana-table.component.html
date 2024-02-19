@@ -16,22 +16,23 @@
               <th class="table__header align-middle">Capitán</th>
               <th class="table__header align-middle">DNI</th>
               <th class="table__header align-middle">Fecha</th>
+              <th class="table__header align-middle">Hora</th>
             </tr>
           </thead>
           <tbody>
-            @for(item of data;track item.hin) {
+            @for(generic of generics;track generic.license) {
             <tr
               title="Haz click para marcar como leído"
               class="data__row default__opacity"
             >
-              <td>{{ item.hin }}</td>
+              <td>{{ generic.license }}</td>
               <!-- Cambia el color de fondo dependiento de si es entrada o salida -->
-              @if(item.date_entry_confirmed == null){
+              @if(generic.type == "Entrada"){
               <td>
                 <div
                   class="arrival d-flex align-items-center justify-content-center"
                 >
-                  <span>Entrada</span>
+                  <span>{{ generic.type }}</span>
                 </div>
               </td>
               } @else {
@@ -39,23 +40,16 @@
                 <div
                   class="departure d-flex align-items-center justify-content-center"
                 >
-                  <span>Salida</span>
+                  <span>{{ generic.type }}</span>
                 </div>
               </td>
               }
-              <td>{{ item.port_name }}</td>
-              <td>{{ item.installation_name }}</td>
-              <td>{{ item.name_captain }}</td>
-              <td>{{ item.id_captain }}</td>
-              @if(item.date_entry_confirmed == null){
-              <td>
-                <span>{{ item.date_entry_confirmed }}</span>
-              </td>
-              } @else {
-              <td>
-                <span>{{ item.date_exit_confirmed }}</span>
-              </td>
-              }
+              <td>{{ generic.harbour }}</td>
+              <td>{{ generic.installation }}</td>
+              <td>{{ generic.captain }}</td>
+              <td>{{ generic.dni }}</td>
+              <td>{{ generic.date }}</td>
+              <td>{{ generic.hour }}</td>
             </tr>
             }
           </tbody>
