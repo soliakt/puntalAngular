@@ -1,42 +1,97 @@
-<div class="row g-0">
-    <div class="shadow rounded bg-white">
-    <h1 class="mobile-table__title__header font-weight-bold p-2 pt-3">Próximas entradas y salidas</h1>
-        <div class="row g-0 justify-content-center p-2">
+@if(!showForm){
+    <div class="row g-0">
+        <div class="shadow rounded bg-white">
+          <h1 class="mobile-table__title__header font-weight-bold p-2 pt-3">{{ selectedTitleItem}}</h1>
+          <div class="row g-0 justify-content-center p-2">
             <div class="mobile-table__content">
-                <table id="generic__mobile" class="table-striped table-borderless mobile-table__content w-100">
-                    <thead>
-                            <tr>
-                            <th class="mobile-table__header ">Matrícula</th>
-                            <th class="mobile-table__header ">Tipo</th>
-                            <th class="mobile-table__header ">Pantalán</th>
-                            <th class="mobile-table__header ">Amarre</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @for(item of data;track item.hin) {
-                            <tr class="mobile-table__row">
-                                <td>{{item.hin}}</td>
-                                @if(item.date_entry_confirmed == null){
-                                    <td>
-                                        <div class="arrival d-flex justify-content-center">
-                                            <span>Entrada</span>
-                                        </div>
-                                    </td>
-                                }
-                                @else{
-                                    <td>
-                                        <div class="departure d-flex justify-content-center">
-                                            <span>Salida</span>
-                                        </div>
-                                    </td>
-                                }
-                                <td>{{item.dock}}</td>
-                                <td>{{item.berth}}</td>
-                            </tr>
-                        }
-                    </tbody>
-                </table>
+              <table id="generic__mobile" class="table-striped table-borderless mobile-table__content w-100">
+                <thead>
+                  <tr>
+                    <th class="mobile-table__header ">Matrícula</th>
+                    <th class="mobile-table__header ">Tipo</th>
+                    <th class="mobile-table__header ">Pantalán</th>
+                    <th class="mobile-table__header ">Amarre</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  @for(item of data;track item.hin;let i = $index) {
+                  <tr class="mobile-table__row" (click)="onRowClick(i)">
+                    <td>{{item.hin}}</td>
+                    @if(item.date_entry_confirmed == null){
+                    <td>
+                      <div class="arrival d-flex justify-content-center">
+                        <span>Entrada</span>
+                      </div>
+                    </td>
+                    }
+                    @else{
+                    <td>
+                      <div class="departure d-flex justify-content-center">
+                        <span>Salida</span>
+                      </div>
+                    </td>
+                    }
+                    <td>{{item.dock_name}}</td>
+                    <td>{{item.berth_name}}</td>
+                  </tr>
+                  }
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+}
+@else{
+    <div class="container">
+        <div class="row bg-white">
+            <div class="col-12 position-relative">
+                    <div class="row d-flex justify-content-center">
+                        <div class="mobile-image__placeholder mt-3"></div>
+                    </div>
+                    <img src="assets/icons/incidencia.svg" alt="Icono de reportar incidencia" class="position-absolute top-0 end-0 mt-1 me-3">         
+                    <form [formGroup]="form">
+                    <div class="mb-3 mt-2 form-group">
+                        <label for="plate" class="form-label">Matrícula</label><br>
+                        <div class="input-group mobile-form__content__icon">                
+                            <span class="p-2 border border-end-0 border-dark border-opacity-50"><img src="assets/icons/matricula.svg" alt="Icono matricula"></span>
+                            <input type="text" class="form-control border border-end-0 border-dark border-opacity-50" name="plate" id="plate" formControlName="plate" readonly>
+                        </div>
+                    </div>
+                    <div class="mb-3 form-group">
+                        <label for="captain__name" class="form-label">Capitan</label><br>
+                        <div class="input-group mobile-form__content__icon">                
+                            <span class="p-2 border border-end-0 border-dark border-opacity-50"><img src="assets/icons/nombre_capitan.svg" alt="Icono matricula"></span>
+                            <input type="text" class="form-control border border-end-0 border-dark border-opacity-50" formControlName="captain_name" name="captain__name" id="captain__name" readonly>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="captain__doc" class="form-label">DNI</label><br>
+                        <div class="input-group mobile-form__content__icon">                
+                            <span class="p-2 border border-end-0 border-dark border-opacity-50"><img src="assets/icons/nombre_capitan.svg" alt="Icono matricula"></span>
+                            <input type="text" class="form-control border border-end-0 border-dark border-opacity-50" formControlName="captain_id" name="captain__doc" id="captain__doc" readonly>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="harbour" class="form-label">Pantalán</label><br>
+                        <div class="input-group mobile-form__content__icon">                
+                            <span class="p-2 border border-end-0 border-dark border-opacity-50"><img src="assets/icons/pantalan.svg" alt="Icono matricula"></span>
+                            <input type="text" class="form-control border border-end-0 border-dark border-opacity-50" name="harbour" id="harbour" formControlName="harbour" readonly>
+                        </div>
+                    </div>
+                    <div class="mb-3" class="form-label">
+                        <label for="berth">Amarre</label><br>
+                        <div class="input-group mobile-form__content__icon">                
+                            <span class="p-2 border border-end-0 border-dark border-opacity-50"><img src="assets/icons/amarre.svg" alt="Icono matricula"></span>
+                            <input type="text" class="form-control border border-end-0 border-dark border-opacity-50" formControlName="berth"  name="berth" id="berth" readonly>
+                        </div>
+                    </div>
+                    <div class="row mb-3 pt-2 d-flex justify-content-center mobile-form__controls">
+                        <button type="button" class="btn mobile-form__button" (click)="onVolverClick()">Volver</button>
+                        <button class="btn mobile-form__button__register" (click)="onRegisterClick(reservationId)">Registrar</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
-</div>
+}

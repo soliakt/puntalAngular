@@ -6,9 +6,14 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ApiLaravelService {
-    private defaultURL = "http://prodeveloplaravel.test/api";
+    private defaultURL = "http://127.0.0.1:8000/api";
     constructor(private http: HttpClient) { }
+
     getReservationInfoFiltered(): Observable<any[]> {
       return this.http.get<any[]>(`${this.defaultURL}/reservation/all/getReservationInfoFiltered`);
-  }
+    }
+
+    updateReservationConfirmation(reservationId: number): Observable<any> {
+      return this.http.put<any>(`${this.defaultURL}/reservation/update/status/${reservationId}`, {});
+    }
 }
