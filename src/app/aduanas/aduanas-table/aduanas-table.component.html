@@ -6,19 +6,54 @@
         <table id="generic" class="table table-striped table-borderless">
           <thead>
             <tr>
-              <th class="table__header">userId</th>
-              <th class="table__header">id</th>
-              <th class="table__header">title</th>
-              <th class="table__header">body</th>
+              <th class="table__header align-middle">Matrícula</th>
+              <th class="table__header align-middle">Tipo</th>
+              <th class="table__header align-middle">Puerto</th>
+              <th class="table__header align-middle">Instalación</th>
+              <th class="table__header align-middle">Capitán</th>
+              <th class="table__header align-middle">DNI</th>
+              <th class="table__header align-middle">Fecha</th>
             </tr>
           </thead>
           <tbody>
-            @for(generic of generics;track generic.userId) {
-            <tr>
-              <td>{{ generic.userId }}</td>
-              <td>{{ generic.id }}</td>
-              <td>{{ generic.title }}</td>
-              <td>{{ generic.body }}</td>
+            @for(item of generics;track item.hin) {
+              <tr
+                title="Haz click para marcar como leído"
+                class="data__row default__opacity"
+              >
+              <td>{{ item.hin }}</td>
+              <script>
+              </script>
+              @if(item.date_exit_confirmed == ""){
+                <td>
+                  <div
+                    class="arrival d-flex align-items-center justify-content-center"
+                  >
+              <span>Entrada</span>
+            </div>
+          </td>
+          } @else {
+          <td>
+            <div
+              class="departure d-flex align-items-center justify-content-center"
+            >
+              <span>Salida</span>
+            </div>
+          </td>
+          }
+              <td>{{ item.port_name }}</td>
+              <td>{{ item.installation_name }}</td>
+              <td>{{ item.name_captain }}</td>
+              <td>{{ item.id_captain }}</td>
+              @if(item.date_exit_confirmed == ""){
+              <td>
+                <span>{{ item.date_entry_confirmed }}</span>
+              </td>
+              } @else {
+              <td>
+                <span>{{ item.date_exit_confirmed }}</span>
+              </td>
+              }
             </tr>
             }
           </tbody>

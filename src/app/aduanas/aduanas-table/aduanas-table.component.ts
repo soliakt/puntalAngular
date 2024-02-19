@@ -26,5 +26,10 @@ export class AduanasTableComponent {
     this.genericsService.returnService().subscribe((generics: Generic[]) => {
       this.generics = generics;
     });
+    console.log(this.generics);
+  }
+  logs() {
+    
+
   }
 }

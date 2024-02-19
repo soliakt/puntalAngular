@@ -13,6 +13,11 @@ export class ApiLaravelService {
       `${this.defaultURL}/reservation/all/getReservationInfoFiltered`
     );
   }
+
+  updateReservationConfirmation(reservationId: number): Observable<any> {
+    return this.http.put<any>(`${this.defaultURL}/reservation/update/status/${reservationId}`, {});
+  }
+
   getLogsFiltered(): Observable<any[]> {
     return this.http.get<any[]>(
       `${this.defaultURL}/reservation/all/getLogsFiltered`
