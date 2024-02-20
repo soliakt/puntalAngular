@@ -1,12 +1,21 @@
 <div class="row">
-  <div class="col shadow rounded me-2 bg-white p-0">
-    <h1 class="m-5 content__header fw-bold">Entradas y Salidas</h1>
+  <div class="col shadow rounded me-2 bg-white">
+    <h1 class="m-5 content__header">Listado Clientes</h1>
     <div class="row justify-content-center">
-      <div class="table__content col-11 mb-4">
-        <table
-          id="generic"
-          class="table table-striped table-borderless align-middle"
-        >
+      <div class="table__content col-11 mb-3">
+        <!-- <div class="table__select d-flex justify-content-end">
+          <div
+            class="table__select__items d-flex justify-content-evenly align-items-center border border-#dee2e6 p-2 rounded-top border-bottom-0"
+          >
+            <input
+              type="checkbox"
+              (change)="onSelectAllChange($event)"
+              class="checkbox__select p-1"
+              style="width: 18px"
+            /><span class="p-1">Marcar todos como leído</span>
+          </div>
+        </div> -->
+        <table id="generic" class="table table-striped table-borderless">
           <thead>
             <tr>
               <th class="table__header align-middle">Matrícula</th>
@@ -20,15 +29,20 @@
             </tr>
           </thead>
           <tbody>
-            @for(generic of generics;track generic.license) {
+
+            @for(generic of generics;track generic.hin) {
+
             <tr
               title="Haz click para marcar como leído"
               class="data__row default__opacity"
+              (click)="markAsSeen(generic.id_reservation)"
             >
-              <td>{{ generic.license }}</td>
-              <!-- Cambia el color de fondo dependiento de si es entrada o salida -->
-              @if(generic.type == "Entrada"){
-              <td>
+
+              <td class="align-middle">{{ generic.hin }}</td>
+              <script></script>
+              @if(generic.date_exit_confirmed == null){
+              <td class="align-middle">
+
                 <div
                   class="arrival d-flex align-items-center justify-content-center"
                 >
@@ -36,7 +50,7 @@
                 </div>
               </td>
               } @else {
-              <td>
+              <td class="align-middle">
                 <div
                   class="departure d-flex align-items-center justify-content-center"
                 >
@@ -44,13 +58,26 @@
                 </div>
               </td>
               }
-              <td>{{ generic.harbour }}</td>
-              <td>{{ generic.installation }}</td>
-              <td>{{ generic.captain }}</td>
-              <td>{{ generic.dni }}</td>
-              <td>{{ generic.date }}</td>
-              <td>{{ generic.hour }}</td>
+
+              <td class="align-middle">{{ generic.port_name }}</td>
+              <td class="align-middle">{{ generic.installation_name }}</td>
+              <td class="align-middle">{{ generic.name_captain }}</td>
+              <td class="align-middle">{{ generic.id_captain }}</td>
+              @if(generic.date_exit_confirmed == null){
+              <td class="align-middle">
+                <span>{{ generic.date_entry_confirmed }}</span>
+              </td>
+              } @else {
+              <td class="align-middle">
+                <span>{{ generic.date_exit_confirmed }}</span>
+              </td>
+              }
+              <td class="align-middle">
+                <span>{{ generic.hour_log }}</span>
+              </td>
+
             </tr>
+
             }
           </tbody>
         </table>

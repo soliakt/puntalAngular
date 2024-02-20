@@ -5,7 +5,9 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
+
 export class ApiLaravelService {
+
     private defaultURL = "http://127.0.0.1:8000/api";
     constructor(private http: HttpClient) { }
 
@@ -16,4 +18,5 @@ export class ApiLaravelService {
     updateReservationConfirmation(reservationId: number): Observable<any> {
       return this.http.put<any>(`${this.defaultURL}/reservation/update/status/${reservationId}`, {});
     }
+
 }

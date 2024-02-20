@@ -79,7 +79,7 @@ $(function () {
 
         //Añadir la pestaña de seleccionar todo
         var selectAll =
-          "<div class='table__select d-flex justify-content-end'><div class='table__select__items d-flex justify-content-evenly align-items-center border border-#dee2e6 p-2 rounded-top border-bottom-0 '><input type='checkbox' class='checkbox__select p-1' style='width: 18px' ><span class='p-1'>Marcar todos como leído</span></div></div>";
+          "<div class='table__select d-flex justify-content-end'><div class='table__select__items d-flex justify-content-evenly align-items-center border border-#dee2e6 p-2 rounded-top border-bottom-0 '><input type='checkbox' (change)='onSelectAllChange($event);' class='checkbox__select p-1' style='width: 18px' ><span class='p-1'>Marcar todos como leído</span></div></div>";
         $(".form-control:first").after(selectAll);
       },
     });
@@ -112,7 +112,7 @@ $(function () {
 
   $(document).ready(function () {
     $(".data__row").css("cursor", "pointer");
-    $(".data__row").hover(function () {
+    $(".data__row").on("hover", function () {
       setTimeout(function () {
         $(this).tooltip();
       }, 5000);
@@ -123,8 +123,16 @@ $(function () {
   restore__opacity();
 
   //Función para bajar la opacidad al marcar el checkbox
-  $(".checkbox__select").change(function () {
-    $("tr td").css("opacity", this.checked ? 0.3 : 1);
+  $(".checkbox__select").on("change", function () {
+    if (this.checked) {
+      $(".data__row").css("opacity", 0.3);
+      $(".data__row").addClass("restore");
+      $(".data__row").removeClass("default__opacity");
+    } else {
+      $(".data__row").css("opacity", 1);
+      $(".data__row").addClass("default__opacity");
+      $(".data__row").removeClass("restore");
+    }
   });
 });
 
