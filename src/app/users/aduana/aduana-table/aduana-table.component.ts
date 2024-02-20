@@ -1,22 +1,28 @@
-import { Component, OnInit, ElementRef, Renderer2 } from "@angular/core";
+import { Component, OnInit, ElementRef, Renderer2 } from '@angular/core';
 
 //Importar la interfaz y el servicio
+
 import { Generic } from "../../../interfaces/generic";
 import { GenericsService } from "../../../services/generics/generics.service";
 import { RouterOutlet } from "@angular/router";
 import { FormsModule } from "@angular/forms";
 
+
 @Component({
-  selector: "app-aduana-table",
+  selector: 'app-aduana-table',
   standalone: true,
+
   imports: [RouterOutlet, FormsModule],
   templateUrl: "./aduana-table.component.html",
   styleUrl: "./aduana-table.component.css",
+
 })
-export class AduanaTableComponent implements OnInit {
+export class AduanaTableComponent {
   //Construir array de la interfaz
   generics: Generic[] = [];
+
   selectAll: boolean = false;
+
 
   constructor(
     private genericsService: GenericsService,
@@ -36,9 +42,9 @@ export class AduanaTableComponent implements OnInit {
   }
 
   loadTableJS() {
-    const script = this.renderer.createElement("script");
-    script.type = "text/javascript";
-    script.src = "./assets/javascript/table.js";
+    const script = this.renderer.createElement('script');
+    script.type = 'text/javascript';
+    script.src = './assets/javascript/table.js';
     script.defer = true;
     this.renderer.appendChild(this.el.nativeElement, script);
   }
