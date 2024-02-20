@@ -29,20 +29,24 @@
             </tr>
           </thead>
           <tbody>
+
             @for(generic of generics;track generic.hin) {
+
             <tr
               title="Haz click para marcar como leído"
               class="data__row default__opacity"
               (click)="markAsSeen(generic.id_reservation)"
             >
+
               <td class="align-middle">{{ generic.hin }}</td>
               <script></script>
               @if(generic.date_exit_confirmed == null){
               <td class="align-middle">
+
                 <div
                   class="arrival d-flex align-items-center justify-content-center"
                 >
-                  <span>Entrada</span>
+                  <span>{{ generic.type }}</span>
                 </div>
               </td>
               } @else {
@@ -50,10 +54,11 @@
                 <div
                   class="departure d-flex align-items-center justify-content-center"
                 >
-                  <span>Salida</span>
+                  <span>{{ generic.type }}</span>
                 </div>
               </td>
               }
+
               <td class="align-middle">{{ generic.port_name }}</td>
               <td class="align-middle">{{ generic.installation_name }}</td>
               <td class="align-middle">{{ generic.name_captain }}</td>
@@ -70,6 +75,7 @@
               <td class="align-middle">
                 <span>{{ generic.hour_log }}</span>
               </td>
+
             </tr>
 
             }
