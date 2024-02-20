@@ -1,31 +1,28 @@
-import { Component, OnInit, ElementRef, Renderer2 } from '@angular/core';
+import { Component, OnInit, ElementRef, Renderer2 } from "@angular/core";
 
 //Importar la interfaz y el servicio
 
-import { Generic } from "../../../interfaces/generic";
-import { GenericsService } from "../../../services/generics/generics.service";
+import { AduanasInterface } from "../../../interfaces/aduanas-interface";
+import { AduanasService } from "../../../services/aduanas-service/aduanas.service";
 import { RouterOutlet } from "@angular/router";
 import { FormsModule } from "@angular/forms";
 
-
 @Component({
-  selector: 'app-aduana-table',
+  selector: "app-aduana-table",
   standalone: true,
 
   imports: [RouterOutlet, FormsModule],
   templateUrl: "./aduana-table.component.html",
   styleUrl: "./aduana-table.component.css",
-
 })
 export class AduanaTableComponent {
   //Construir array de la interfaz
-  generics: Generic[] = [];
+  aduanas: AduanasInterface[] = [];
 
   selectAll: boolean = false;
 
-
   constructor(
-    private genericsService: GenericsService,
+    private aduanasService: AduanasService,
     private renderer: Renderer2,
     private el: ElementRef
   ) {}
@@ -35,22 +32,24 @@ export class AduanaTableComponent {
   }
 
   recover() {
-    this.genericsService.getLogsFiltered().subscribe((generics: Generic[]) => {
-      this.loadTableJS();
-      this.generics = generics;
-    });
+    this.aduanasService
+      .getLogsFiltered()
+      .subscribe((aduanas: AduanasInterface[]) => {
+        this.loadTableJS();
+        this.aduanas = aduanas;
+      });
   }
 
   loadTableJS() {
-    const script = this.renderer.createElement('script');
-    script.type = 'text/javascript';
-    script.src = './assets/javascript/table.js';
+    const script = this.renderer.createElement("script");
+    script.type = "text/javascript";
+    script.src = "./assets/javascript/table.js";
     script.defer = true;
     this.renderer.appendChild(this.el.nativeElement, script);
   }
 
   markAsSeen(reservation_id: number) {
-    this.genericsService.markAsSeen(reservation_id).subscribe(
+    this.aduanasService.markAsSeen(reservation_id).subscribe(
       (response) => {
         console.log("Marcado como leido:", response);
       },
@@ -71,7 +70,7 @@ export class AduanaTableComponent {
   }
 
   markAllAsSeen() {
-    this.genericsService.markPageAsSeen().subscribe(
+    this.aduanasService.markPageAsSeen().subscribe(
       (response) => {
         console.log("Página marcada como leida:", response);
       },
