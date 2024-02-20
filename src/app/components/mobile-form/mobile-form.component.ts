@@ -14,7 +14,6 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class MobileFormComponent implements OnInit {
   form: FormGroup;
-  showForm: boolean = false;
   reservationId: any;
   dataSelectionRow: any;
 
@@ -47,11 +46,10 @@ export class MobileFormComponent implements OnInit {
       harbour: this.dataSelectionRow.dock_name,
       berth: this.dataSelectionRow.berth_name
     });
-    this.showForm = true;
   }
 
   onVolverClick(){
-    this.showForm = false;
+    
   }
 
   onRegisterClick(reservation_id : number){
@@ -63,6 +61,5 @@ export class MobileFormComponent implements OnInit {
         console.error('Error al confirmar:', error);
       }
     );
-    this.showForm = false;
   }
 }

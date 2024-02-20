@@ -3,7 +3,8 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { ApiLaravelService } from '../../services/api-laravel/api-laravel.service';
 import { MobileSectionService } from '../../services/mobile-section/mobile-section.service';
 import { Subscription } from 'rxjs';
-import { Router } from '@angular/router';
+import { Router, RouterOutlet } from '@angular/router';
+import { FormCheckerService } from '../../services/form-check/form-checker.service';
 
 @Component({
   selector: 'app-mobile-table',
@@ -17,13 +18,15 @@ export class MobileTableComponent implements OnInit, OnDestroy {
   selectedTitleItem: string = 'Próximas entradas y salidas';
   dataSelectionRow: any;
   form: FormGroup;
-  @Output() rowDataSelected: EventEmitter<any> = new EventEmitter<any>();
+  @Output() dataSelected = new EventEmitter<any>();
+  @Output() dataEvent = new EventEmitter<boolean>();
+  showForm: boolean = false;
 
   constructor(
     private apiLaravelService: ApiLaravelService,
     private mobilesectionService: MobileSectionService,
+    private formCheckerService: FormCheckerService,
     private renderer: Renderer2,
-    private router: Router,
     private el: ElementRef,
     private fb: FormBuilder,
   ) {
@@ -99,10 +102,16 @@ export class MobileTableComponent implements OnInit, OnDestroy {
     this.renderer.appendChild(this.el.nativeElement, script);
   }
 
-  onRowClick(index: number){
+  sendForm(index : number){
+    console.log("mandando datos form");
     this.dataSelectionRow = this.data[index];
-    this.rowDataSelected.emit(this.dataSelectionRow);
-    this.router.navigate(['/mobile-form']);
-    console.log('After navigation');
+    this.dataSelected.emit(this.dataSelectionRow);
+  }
+
+  onRowClick(index: number){
+    console.log("Clickeaste")
+    const showForm = true;
+    this.formCheckerService.setShowForm(showForm);
+    this.sendForm(index);
   }
 }

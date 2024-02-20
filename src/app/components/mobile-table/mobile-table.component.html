@@ -1,43 +1,42 @@
-
-    <div class="row g-0">
-        <div class="shadow rounded bg-white">
-          <h1 class="mobile-table__title__header font-weight-bold p-2 pt-3">{{ selectedTitleItem}}</h1>
-          <div class="row g-0 justify-content-center p-2">
-            <div class="mobile-table__content">
-              <table #dataTable id="generic__mobile" class="table-striped table-borderless mobile-table__content w-100">
-                <thead>
-                  <tr>
-                    <th class="mobile-table__header ">Matrícula</th>
-                    <th class="mobile-table__header ">Tipo</th>
-                    <th class="mobile-table__header ">Pantalán</th>
-                    <th class="mobile-table__header ">Amarre</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  @for(item of data;track item.hin;let i = $index) {
-                  <tr class="mobile-table__row" (click)="onRowClick(i)">
-                    <td>{{item.hin}}</td>
-                    @if(item.date_entry_confirmed == null){
-                    <td>
-                      <div class="arrival d-flex justify-content-center">
-                        <span>Entrada</span>
-                      </div>
-                    </td>
-                    }
-                    @else{
-                    <td>
-                      <div class="departure d-flex justify-content-center">
-                        <span>Salida</span>
-                      </div>
-                    </td>
-                    }
-                    <td>{{item.dock_name}}</td>
-                    <td>{{item.berth_name}}</td>
-                  </tr>
-                  }
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
+<div class="row g-0">
+  <div class="shadow rounded bg-white">
+    <h1 class="mobile-table__title__header font-weight-bold p-2 pt-3">{{ selectedTitleItem}}</h1>
+    <div class="row g-0 justify-content-center p-2">
+      <div class="mobile-table__content">
+        <table #dataTable id="generic__mobile" class="table-striped table-borderless mobile-table__content w-100">
+          <thead>
+            <tr>
+              <th class="mobile-table__header ">Matrícula</th>
+              <th class="mobile-table__header ">Tipo</th>
+              <th class="mobile-table__header ">Pantalán</th>
+              <th class="mobile-table__header ">Amarre</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for(item of data;track item.hin;let i = $index) {
+            <tr class="mobile-table__row" (click)="onRowClick(i)">
+              <td>{{item.hin}}</td>
+              @if(item.date_entry_confirmed == null){
+              <td>
+                <div class="arrival d-flex justify-content-center">
+                  <span>Entrada</span>
+                </div>
+              </td>
+              }
+              @else{
+              <td>
+                <div class="departure d-flex justify-content-center">
+                  <span>Salida</span>
+                </div>
+              </td>
+              }
+              <td>{{item.dock_name}}</td>
+              <td>{{item.berth_name}}</td>
+            </tr>
+            }
+          </tbody>
+        </table>
       </div>
+    </div>
+  </div>
+</div>
