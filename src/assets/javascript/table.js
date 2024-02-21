@@ -1,13 +1,13 @@
 //Construye la tabla genérica
 
 $(function () {
-  var table__generic;
+  var aduanas_table;
 
   function initialize__table() {
     //Primero destruye la tabla si ya existe, asi evitamos errores cuando se refresca la pagina
-    $("#generic").DataTable().destroy();
+    $("#aduanas_table").DataTable().destroy();
 
-    table__generic = $("#generic").DataTable({
+    aduanas_table = $("#aduanas_table").DataTable({
       order: [[6, "desc"]],
       columnDefs: [
         {
@@ -64,11 +64,11 @@ $(function () {
       initComplete: function () {
         //Botón de busqueda
         var buttonSearch =
-          "<button type= 'button' id= 'buscarGenericButton' class= 'btn button-search ms-3' style='--bs-btn-padding-y: .5rem; --bs-btn-padding-x: 1rem; --bs-btn-font-size: 1rem;'>Buscar</button>";
+          "<button type= 'button' id= 'buscarAduanasButton' class= 'btn button-search ms-3' style='--bs-btn-padding-y: .5rem; --bs-btn-padding-x: 1rem; --bs-btn-font-size: 1rem;'>Buscar</button>";
         $(".dataTables_filter").append(buttonSearch);
         //Borde de input de búsqueda
         $(".dataTables_filter input")
-          .attr("id", "buscarGenericInput")
+          .attr("id", "buscarAduanasInput")
           .addClass("border border-dark border-opacity-50");
         //Alinear items en la barra de búsqueda
         $(".dataTables_filter").addClass(
@@ -76,18 +76,13 @@ $(function () {
         );
         //Tamaño de la barra de búsqueda
         $(".dataTables_filter label").addClass("input-group input-group-lg");
-
-        //Añadir la pestaña de seleccionar todo
-        var selectAll =
-          "<div class='table__select d-flex justify-content-end'><div class='table__select__items d-flex justify-content-evenly align-items-center border border-#dee2e6 p-2 rounded-top border-bottom-0 '><input type='checkbox' (change)='onSelectAllChange($event);' class='checkbox__select p-1' style='width: 18px' ><span class='p-1'>Marcar todos como leído</span></div></div>";
-        $(".form-control:first").after(selectAll);
       },
     });
   }
 
   initialize__table();
-  $("#buscarGenericButton").on("click", function () {
-    table__generic.search($("#buscarGenericInput").val()).draw();
+  $("#buscarAduanasButton").on("click", function () {
+    aduanas_table.search($("#buscarAduanasInput").val()).draw();
   });
 
   //Función para cambiar disminuir la opacidad la fila
@@ -137,7 +132,7 @@ $(function () {
 });
 
 function tablePage(pageNumber) {
-  var employee = $("#generic").DataTable();
+  var employee = $("#aduanas_table").DataTable();
   employee.page(pageNumber).draw(false);
 }
 

@@ -4,7 +4,6 @@ import { RouterOutlet } from "@angular/router";
 import { LoginComponent } from "./login/login/login.component";
 import { NavbarComponent } from "./components/navbar/navbar.component";
 import { SidebarComponent } from "./components/sidebar/sidebar.component";
-import { TableComponent } from "./components/table/table.component";
 import { FormComponent } from "./components/form/form.component";
 import { RefreshService } from "./services/refresh/refresh.service";
 import { CookieService } from "ngx-cookie-service";
@@ -18,7 +17,6 @@ import { CookieService } from "ngx-cookie-service";
     LoginComponent,
     NavbarComponent,
     SidebarComponent,
-    TableComponent,
     FormComponent,
   ],
   templateUrl: "./app.component.html",

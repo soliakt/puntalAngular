@@ -1,6 +1,6 @@
 // Estructura de los datos a importar
 
-export interface Generic {
+export interface AduanasInterface {
   id_reservation: number;
   hin: number;
   date_entry_confirmed: string;
