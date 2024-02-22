@@ -19,7 +19,6 @@ export class MobileTableComponent implements OnInit, OnDestroy {
   form: FormGroup;
   @Output() dataSelected = new EventEmitter<any>();
   @Output() dataEvent = new EventEmitter<boolean>();
-  showForm: boolean = false;
 
   constructor(
     private apiLaravelService: ApiLaravelService,
@@ -108,8 +107,8 @@ export class MobileTableComponent implements OnInit, OnDestroy {
   }
 
   onRowClick(index: number){
-    console.log("Clickeaste")
     const showForm = true;
+    console.log("Clickeaste");
     this.formCheckerService.setShowForm(showForm);
     this.sendForm(index);
   }

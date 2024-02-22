@@ -1,8 +1,8 @@
 <header> 
     <app-mobile-navbar></app-mobile-navbar>
     <app-mobile-profile></app-mobile-profile>
-    <app-mobile-section></app-mobile-section>
     @if(!showForm){
+        <app-mobile-section></app-mobile-section>
         <app-mobile-table></app-mobile-table>
     } @else if (showForm){
         <app-mobile-form></app-mobile-form>
