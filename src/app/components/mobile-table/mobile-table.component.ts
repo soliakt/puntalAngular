@@ -3,7 +3,6 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { ApiLaravelService } from '../../services/api-laravel/api-laravel.service';
 import { MobileSectionService } from '../../services/mobile-section/mobile-section.service';
 import { Subscription } from 'rxjs';
-import { Router, RouterOutlet } from '@angular/router';
 import { FormCheckerService } from '../../services/form-check/form-checker.service';
 
 @Component({
