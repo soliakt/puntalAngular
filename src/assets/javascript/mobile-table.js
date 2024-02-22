@@ -1,20 +1,24 @@
 //Construye la tabla genérica
 
 $(function () {
-  var table__generic;
+    var table__generic;
   
-  function initialize__table() {
-    $("#generic__mobile").DataTable().destroy();
-
-    table__generic = $("#generic__mobile").DataTable({
-      order: [[0, "desc"]],
-      dom: '<"top form-control border border-0 p-0 "><"border rounded g-0 p-0"rt <"d-flex justify-content-center m-1"p>><"clear">',
-      language: {
-        infoEmpty: "No records available",
-        zeroRecords: "Nothing found",
-        paginate: {
-          previous: "&lt;",
-          next: "&gt;",
+    function initialize__table() {
+      if ($.fn.DataTable.isDataTable("#generic__mobile")) {
+        console.log("Se destruye la tabla");
+        $("#generic__mobile").DataTable().clear().destroy();
+      }
+  
+      table__generic = $("#generic__mobile").DataTable({
+        order: [[0, "desc"]],
+        dom: '<"top form-control border border-0 p-0 "><"border rounded g-0 p-0"rt <"d-flex justify-content-center m-1"p>><"clear">',
+        language: {
+          infoEmpty: "No records available",
+          zeroRecords: "Nothing found",
+          paginate: {
+            previous: "&lt;",
+            next: "&gt;",
+          },
         },
         pagingType: "simple_numbers",
         search: {

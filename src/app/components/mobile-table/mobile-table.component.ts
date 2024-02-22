@@ -17,8 +17,8 @@ export class MobileTableComponent implements OnInit, OnDestroy {
   selectedTitleItem: string = 'Próximas entradas y salidas';
   dataSelectionRow: any;
   form: FormGroup;
-  @Output() dataSelected = new EventEmitter<any>();
-  @Output() dataEvent = new EventEmitter<boolean>();
+  currentDate: string;
+  tableWatcher: boolean;
 
   constructor(
     private apiLaravelService: ApiLaravelService,
@@ -28,6 +28,8 @@ export class MobileTableComponent implements OnInit, OnDestroy {
     private el: ElementRef,
     private fb: FormBuilder,
   ) {
+    this.tableWatcher = false;
+    this.currentDate = new Date().toISOString().slice(0, 10);
     this.form = this.fb.group({
       plate: [''],
       captain_name: [''],
@@ -61,7 +63,7 @@ export class MobileTableComponent implements OnInit, OnDestroy {
       case 'Salidas':
         return 'Próximas salidas';
       case 'Registros':
-        return "Registros realizados";
+        return 'Registros realizados';
       default:
         return 'Próximas entradas y salidas';
     }
@@ -69,47 +71,54 @@ export class MobileTableComponent implements OnInit, OnDestroy {
 
   recover(){
     const today = new Date().toISOString().slice(0, 10);
-    if (this.selectedItem === 'Entradas') {
+    if (this.selectedTitleItem === 'Próximas entradas') {
       this.apiLaravelService.getReservationInfoFiltered().subscribe((data: any[]) => {
-        this.loadTableJS();
         this.data = data.filter(item => !item.date_entry_confirmed);
+        console.log("Entrada:" + this.data);
+      }, error => {
+        console.error('Error fetching Próximas entradas data:', error);
       });
-    } else if (this.selectedItem === 'Salidas') {
+    } else if (this.selectedTitleItem === 'Próximas salidas') {
       this.apiLaravelService.getReservationInfoFiltered().subscribe((data: any[]) => {
-        this.loadTableJS();
         this.data = data.filter(item => !item.date_exit_confirmed && item.date_entry_confirmed);
+        console.log("Salida:" + this.data);
+      }, error => {
+        console.error('Error fetching Próximas salidas data:', error);
       });
-    } else if (this.selectedItem === 'Registros') {
+    } else if (this.selectedTitleItem === 'Registros realizados') {
       this.apiLaravelService.getReservationInfoFiltered().subscribe((data: any[]) => {
-        this.loadTableJS();
         this.data = data.filter(item => item.date_entry_confirmed === today && !item.date_exit_confirmed);
+        console.log("Registros:" + this.data);
+      }, error => {
+        console.error('Error fetching Registros realizados data:', error);
       });
     } else {
       this.apiLaravelService.getReservationInfoFiltered().subscribe((data: any[]) => {
-        this.loadTableJS();
+        if(!this.tableWatcher){
+          this.loadTableJS();
+          this.tableWatcher = true;
+        }
         this.data = data;
+        console.log("Inicio:" + this.data);
+      }, error => {
+        console.error('Error fetching data for default case:', error);
       });
     }
   }
+  
 
   loadTableJS(){
     const script = this.renderer.createElement('script');
     script.type = 'text/javascript';
     script.src = './assets/javascript/mobile-table.js';
     script.defer = true;
-    this.renderer.appendChild(this.el.nativeElement, script);
+    document.body.appendChild(script);
   }
 
-  sendForm(index : number){
-    console.log("mandando datos form");
-    this.dataSelectionRow = this.data[index];
-    this.dataSelected.emit(this.dataSelectionRow);
-  }
-
-  onRowClick(index: number){
+  onRowClick(index: number) {
     const showForm = true;
-    console.log("Clickeaste");
     this.formCheckerService.setShowForm(showForm);
-    this.sendForm(index);
+    console.log(this.data[index]);
+    this.formCheckerService.setFormData(this.data[index]);
   }
 }

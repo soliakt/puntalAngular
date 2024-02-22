@@ -7,7 +7,6 @@ import { MobileSectionModule } from '../../components/mobile-section/mobile-sect
 import { Router, RouterOutlet } from '@angular/router';
 import { FormCheckerService } from '../../services/form-check/form-checker.service';
 
-
 @Component({
   selector: 'app-guardamuelle',
   standalone: true,
@@ -15,6 +14,7 @@ import { FormCheckerService } from '../../services/form-check/form-checker.servi
   templateUrl: './guardamuelle.component.html',
   styleUrl: './guardamuelle.component.css'
 })
+
 export class GuardamuelleComponent {
     showForm: boolean = false;
     constructor(
@@ -31,4 +31,4 @@ export class GuardamuelleComponent {
         }
       });
     }
-  }
+}

@@ -1,15 +1,17 @@
-<div class="container pt-2">
+<div class="container pt-3">
     <div class="row bg-white">
         <div class="col-12 position-relative">
                 <div class="row d-flex justify-content-center">
                     <div class="mobile-image__placeholder mt-3"></div>
                 </div>
-                <img src="assets/icons/incidencia.svg" alt="Icono de reportar incidencia" class="position-absolute top-0 end-0 mt-1 me-3">         
+                <div class="position-absolute top-0 end-0 mt-1 me-3">
+                    <img src="assets/icons/incidencia.svg" alt="Icono de reportar incidencia">  
+                </div>      
                 <form [formGroup]="form">
                 <div class="mb-3 mt-2 form-group">
                     <label for="plate" class="form-label">Matrícula</label><br>
                     <div class="input-group mobile-form__content__icon">                
-                        <input type="text" class="form-control border border-end-0 border-dark border-opacity-50" name="plate" id="plate" formControlName="plate">
+                        <input type="text" class="form-control border border-end-0 border-dark border-opacity-50" name="plate" id="plate" formControlName="plate" readonly>
                     </div>
                 </div>
                 <div class="mb-3 form-group">
@@ -38,7 +40,7 @@
                 </div>
                 <div class="row mb-3 pt-2 d-flex justify-content-center mobile-form__controls">
                     <button type="button" class="btn mobile-form__button" (click)="onVolverClick()">Volver</button>
-                    <button class="btn mobile-form__button__register" (click)="onRegisterClick(reservationId)">Registrar</button>
+                    <button class="btn mobile-form__button__register" (click)="onRegisterClick()">Registrar</button>
                 </div>
             </form>
         </div>
