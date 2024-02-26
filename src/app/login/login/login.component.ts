@@ -53,15 +53,17 @@ export class LoginComponent {
             this.cookieService.set("Email", res.email);
           }
           if (res.status !== "Inactivo") {
-            localStorage.setItem("loginToken", res.data.token);
-            localStorage.setItem("employeeRole", res.rolename);
-            localStorage.setItem("employeeName", res.name);
-
             if (res.rolename == "Aduanas") {
+              localStorage.setItem("loginToken", res.data.token);
+              localStorage.setItem("employeeRole", res.rolename);
+              localStorage.setItem("employeeName", res.name);
               this.router.navigateByUrl("/aduana");
             }
 
             if (res.rolename == "Guardamuelles") {
+              localStorage.setItem("loginToken", res.data.token);
+              localStorage.setItem("employeeRole", res.rolename);
+              localStorage.setItem("employeeName", res.name);
               this.router.navigateByUrl("/guardamuelle");
             }
           } else {
