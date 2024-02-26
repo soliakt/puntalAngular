@@ -1,4 +1,4 @@
-import { Component, inject } from "@angular/core";
+import { Component, ElementRef, inject } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { Router } from "@angular/router";
 import { HttpClientModule } from "@angular/common/http";
@@ -18,6 +18,14 @@ export class LoginComponent {
   credentialError: boolean = false;
   statusError: boolean = false;
   rememberEmail: boolean = false;
+  passwordFieldType: string = "password";
+
+  showPassword(event: Event) {
+    event.preventDefault();
+    this.passwordFieldType =
+      this.passwordFieldType === "password" ? "text" : "password";
+  }
+
   onCheck(event) {
     if (event.target.checked) {
       this.rememberEmail = true;
@@ -27,11 +35,13 @@ export class LoginComponent {
   constructor(
     private http: HttpClient,
     private router: Router,
-    private cookieService: CookieService
+    private cookieService: CookieService,
+    private el: ElementRef
   ) {
     this.loginObj = new Login();
     this.loadEmailFromCookie();
   }
+
   check__login() {
     this.http
       .post("http://127.0.0.1:8000/api/employee/login", this.loginObj)
