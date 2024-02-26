@@ -1,0 +1,83 @@
+<div
+  class="row d-flex login__content justify-content-md-center align-content-center p-0 g-0 login__display"
+>
+  <div class="col-lg-4 col-md-4 col-sm-12 shadow p-3 mb-5 rounded p-4">
+    <div class="row">
+      <div class="col-12">
+        <img src="assets/icons/logofull.svg" class="rounded mx-auto d-block" />
+      </div>
+    </div>
+    <form (ngSubmit)="check__login()" method="post" class="p-4 mix-white-100">
+      <label for="login" class="form-label">Email</label>
+      <div class="input-group mb-3">
+        <span
+          class="input-group-text border border-dark-subtle"
+          id="basic-addon1"
+          ><i class="bi bi-envelope"></i
+        ></span>
+        <input
+          type="text"
+          class="form-control border border-dark-subtle"
+          name="email"
+          id="login"
+          [(ngModel)]="loginObj.email"
+        />
+      </div>
+      <label for="password" class="form-label">Contraseña</label>
+      <div class="input-group">
+        <span
+          class="input-group-text border border-dark-subtle"
+          id="basic-addon2"
+          ><i class="bi bi-lock"></i
+        ></span>
+        <input
+          [type]="passwordFieldType"
+          class="form-control border border-end-0 border-dark-subtle"
+          name="password"
+          id="password"
+          [(ngModel)]="loginObj.password"
+        />
+        <span
+          (click)="showPassword($event)"
+          class="input-group-text bg-white border border-start-0 border-dark-subtle"
+          id="view__password"
+          ><a href="#"><i class="bi bi-eye"></i></a
+        ></span>
+      </div>
+      <div class="row justify-content-between">
+        <div class="col">
+          <div class="form-check mt-2">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              value=""
+              name="rememberEmail"
+              (change)="onCheck($event)"
+              id="flexCheckDefault"
+            />
+            <label class="form-check-label" for="flexCheckDefault">
+              Recordar usuario
+            </label>
+          </div>
+        </div>
+        <div class="col mt-2 text-end">
+          <a href="./password-recovery">Recuperar Contraseña</a>
+        </div>
+      </div>
+
+      <button
+        type="submit"
+        class="btn btn-primary btn-lg mt-4 rounded mx-auto d-block fw-bold send"
+      >
+        Iniciar Sesión
+      </button>
+    </form>
+    @if (credentialError == true){
+    <div class="alert alert-danger">Las credenciales no son correctas.</div>
+    } @if (statusError == true){
+    <div class="alert alert-danger">
+      El usuario al que intentas acceder está deshabilitado.
+    </div>
+    }
+  </div>
+</div>

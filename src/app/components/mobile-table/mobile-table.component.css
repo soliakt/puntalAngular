@@ -1,6 +1,54 @@
 *{
     font-family: 'Roboto';
 }
+
+td{
+    padding: 5px;
+}
 .mobile-table__row{
-    height: 40px;
+    height: 50px;
+}
+.arrival{
+    background-color: #76c4ff;
+    height: 25px;
+    width: 60px;
+    border-radius: 3px;
+}
+
+.departure{
+    background-color: #e58200;
+    height: 25px;
+    width: 60px;
+    border-radius: 3px;
+}
+
+.mobile-table__title__header{
+    font-weight: 600;
+}
+
+.mobile-form__button{
+    width: 155px;
+}
+
+
+.mobile-form__button__register{
+    background-color: #008ECB;
+    width: 155px;
+    color: white;
+}
+
+.mobile-image__placeholder{
+    border: 1px solid black;
+    width: 150px;
+    height: 150px;
+}
+
+
+.mobile-form__content__icon{
+    background-color: white !important;
+    color: var(--corporate-blue);
+}
+
+.dataTables_empty {
+    display: none;
 }

@@ -1,16 +1,18 @@
 <nav class="navbar navbar-expand sticky-top">
-    <div class="container-fluid">
-        <div class="collapse navbar-collapse justify-content-center">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <img src="assets/icons/logo.svg" alt="logo">
-                </li>
-            </ul>
-        </div>
-        <div class="navbar-nav ms-auto">
-            <div class="mobile-navbar__logout d-flex align-items-center fw-medium">
-                <i class="bi bi-box-arrow-right fs-4 text-white"></i>
-            </div>
-        </div>
+  <div class="container-fluid">
+    <div class="collapse navbar-collapse justify-content-center">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <img src="assets/icons/logo.svg" alt="logo" />
+        </li>
+      </ul>
     </div>
+    <div class="navbar-nav ms-auto">
+      <div class="mobile-navbar__logout d-flex align-items-center fw-medium">
+        <a (click)="signOut()" href="/login"
+          ><i class="bi bi-box-arrow-right fs-4 text-white"></i>
+        </a>
+      </div>
+    </div>
+  </div>
 </nav>

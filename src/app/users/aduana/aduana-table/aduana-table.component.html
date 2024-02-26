@@ -1,10 +1,27 @@
 <div class="row">
-  <div class="col shadow rounded me-2 bg-white p-0">
-    <h1 class="m-5 content__header fw-bold">Entradas y Salidas</h1>
+  <div class="col shadow rounded me-2 bg-white">
+    <h1 class="m-5 content__header">Portos de Galicia</h1>
     <div class="row justify-content-center">
-      <div class="table__content col-11 mb-4">
-        <table id="generic" class="table table-striped table-borderless align-middle">
+      <div class="table__content col-11 mb-3">
+        <table id="aduanas_table" class="table table-striped table-borderless">
           <thead>
+            <td>
+              <div class="d-flex align-items-center border-bottom">
+                <span class="p-1 fw-bold">Entradas y salidas</span>
+              </div>
+            </td>
+            <td colspan="7" class="align-middle justify-end">
+              <div
+                class="d-flex justify-content-end align-items-center border-bottom"
+              >
+                <input
+                  type="checkbox"
+                  (change)="onSelectAllChange($event)"
+                  class="checkbox__select p-1"
+                  style="width: 18px"
+                /><span class="p-1">Marcar todos como leído</span>
+              </div>
+            </td>
             <tr>
               <th class="table__header align-middle">Matrícula</th>
               <th class="table__header align-middle">Tipo</th>
@@ -17,30 +34,51 @@
             </tr>
           </thead>
           <tbody>
-            @for(generic of generics;track generic.license) {
-            <tr title="Haz click para marcar como leído" class="data__row default__opacity" >
-              <td>{{ generic.license }}</td>
-              <!-- Cambia el color de fondo dependiento de si es entrada o salida -->
-              @if(generic.type == "Entrada"){
-                <td>
-                  <div class="arrival d-flex align-items-center justify-content-center">
-                    <span>{{ generic.type }}</span>
-                  </div>
-                </td>
+            @for(log of aduanas;track log.hin) {
+
+            <tr
+              title="Haz click para marcar como leído"
+              class="data__row default__opacity"
+              (click)="markAsSeen(log.id_reservation)"
+            >
+              <td class="align-middle">{{ log.hin }}</td>
+              <script></script>
+              @if(log.date_exit_confirmed == null){
+              <td class="align-middle">
+                <div
+                  class="arrival d-flex align-items-center justify-content-center"
+                >
+                  <span>Entrada</span>
+                </div>
+              </td>
               } @else {
-                <td>
-                  <div class="departure d-flex align-items-center justify-content-center">
-                    <span>{{ generic.type }}</span>
-                  </div>
-                </td>
+              <td class="align-middle">
+                <div
+                  class="departure d-flex align-items-center justify-content-center"
+                >
+                  <span>Salida</span>
+                </div>
+              </td>
               }
-              <td>{{ generic.harbour }}</td>
-              <td>{{ generic.installation }}</td>
-              <td>{{ generic.captain }}</td>
-              <td>{{ generic.dni }}</td>
-              <td>{{ generic.date }}</td>
-              <td>{{ generic.hour }}</td>
+
+              <td class="align-middle">{{ log.port_name }}</td>
+              <td class="align-middle">{{ log.installation_name }}</td>
+              <td class="align-middle">{{ log.name_captain }}</td>
+              <td class="align-middle">{{ log.id_captain }}</td>
+              @if(log.date_exit_confirmed == null){
+              <td class="align-middle">
+                <span>{{ log.date_entry_confirmed }}</span>
+              </td>
+              } @else {
+              <td class="align-middle">
+                <span>{{ log.date_exit_confirmed }}</span>
+              </td>
+              }
+              <td class="align-middle">
+                <span>{{ log.hour_log }}</span>
+              </td>
             </tr>
+
             }
           </tbody>
         </table>

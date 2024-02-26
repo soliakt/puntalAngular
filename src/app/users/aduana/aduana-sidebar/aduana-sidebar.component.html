@@ -9,7 +9,9 @@
           src="assets/pfps/pfp-default.png"
           alt=""
         />
-        <span class="d-block text-center pt-2 fw-bold">Fuerzas del estado</span>
+        @if (username){
+        <span class="d-block text-center pt-2 fw-bold">{{ username }}</span>
+        }
       </div>
       <div class="sidebar__content__options mt-3">
         <div
@@ -22,10 +24,14 @@
     </div>
     <div class="container-fluid">
       <div
-        class="sidebar__logout d-flex align-items-center fw-medium justify-content-center"
+        class="sidebar__logout d-flex align-content-center fw-medium justify-content-center"
       >
-        <span>Cerrar sesión</span>
-        <i class="bi bi-box-arrow-right fs-4 ms-1"></i>
+        <a (click)="signOut()" href="/login" class="text-decoration-none">
+          <div class="d-flex justify-content-center align-items-center">
+            <span>Cerrar sesión</span>
+            <i class="bi bi-box-arrow-right fs-4 ms-1"></i>
+          </div>
+        </a>
       </div>
     </div>
   </div>
