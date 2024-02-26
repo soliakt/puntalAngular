@@ -68,6 +68,12 @@ export class MobileFormComponent implements OnInit, OnDestroy {
     this.formCheckerService.setShowForm(showForm);
   }
 
+  onReportClick() {
+    const showIncident = true;
+    this.formCheckerService.setShowIncident(showIncident);
+    this.formCheckerService.setFormData(this.dataSelectionRow);
+  }
+
   onRegisterClick(){
       console.log(this.reservation_id);
       this.apiLaravelService.updateReservationConfirmation(this.reservation_id).subscribe(
