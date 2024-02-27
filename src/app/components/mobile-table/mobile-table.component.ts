@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy, ElementRef, Renderer2 } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { ApiLaravelService } from '../../services/api-laravel/api-laravel.service';
+import { ApiLaravelService } from '../../services/api-laravel/api-laravel.service'; 
 import { MobileSectionService } from '../../services/mobile-section/mobile-section.service';
 import { RefreshService } from '../../services/refresh/refresh.service';
 import { Subscription } from 'rxjs';
@@ -10,10 +10,10 @@ import { Subscription } from 'rxjs';
   templateUrl: './mobile-table.component.html',
   styleUrls: ['./mobile-table.component.css']
 })
-export class MobileTableComponent implements OnInit, OnDestroy {
+export class MobileTableComponent implements OnInit, OnDestroy { // OnInit es una interfaz de angular que llama a ngOnInit() para que se inicialice el componente
   data: any[] = [];
   selectedItem: string | undefined;
-  subscription: Subscription = new Subscription();
+  subscription: Subscription = new Subscription(); // Esta instancia se crea para almacenar una suscripción a un observable
   selectedTitleItem: string = 'Próximas entradas y salidas';
   showForm: boolean = false;
   dataSelectionRow: any;
@@ -120,7 +120,7 @@ export class MobileTableComponent implements OnInit, OnDestroy {
   }
 
   onRegisterClick(reservation_id : number){
-    this.apiLaravelService.updateReservationConfirmation(reservation_id).subscribe(
+    this.apiLaravelService.updateReservationConfirmation(reservation_id).subscribe( // Nos suscribimos a ese observable
       (response) => {
         console.log('Confirmación completada:', response);
       },
