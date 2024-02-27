@@ -36,4 +36,11 @@ export class ApiLaravelService {
     );
   }
 
+  addReport(reservationId: number, formData: any){
+    return this.http.post<any>(
+      `${this.defaultURL}/report/${reservationId}`, 
+      formData
+    );
+  }
+
 }

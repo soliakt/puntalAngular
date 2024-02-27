@@ -3,9 +3,9 @@
         <div class="col-12 position-relative">    
             <form [formGroup]="form">
                 <div class="mb-3 mt-2 form-group">
-                    <label for="plate" class="form-label">Matrícula</label><br>
+                    <label for="hin" class="form-label">Matrícula</label><br>
                     <div class="input-group">                
-                        <input type="text" class="form-control border border-end-0 border-dark border-opacity-50 fs-4 soloLectura" name="plate" id="plate" formControlName="plate" readonly>
+                        <input type="text" class="form-control border border-end-0 border-dark border-opacity-50 fs-4 soloLectura" name="hin" id="hin" formControlName="hin" readonly>
                     </div>
                 </div>
                 <div class="mb-3 form-group">
@@ -35,12 +35,12 @@
                 <div class="mb-3" class="form-label">
                     <label for="comments">Comentarios</label><br>
                     <div class="input-group">                
-                        <input type="textarea" class="form-control border border-end-0 border-dark border-opacity-50 fs-2 comentarios" formControlName="comments"  name="comments" id="comments">
+                        <textarea class="form-control border border-end-0 border-dark border-opacity-50 fs-2 comentarios" formControlName="comments"  name="comments" id="comments" cols="30" rows="10"></textarea>
                     </div>
                 </div>
                 <div class="row mb-3 pt-2 d-flex justify-content-center mobile-form__controls">
                     <button type="button" class="btn mobile-form__button" (click)="onVolverClick()">Volver</button>
-                    <button class="btn mobile-form__button__register">Enviar</button>
+                    <button class="btn mobile-form__button__register" (click)="onEnviarClick()">Enviar</button>
                 </div>
             </form>
         </div>

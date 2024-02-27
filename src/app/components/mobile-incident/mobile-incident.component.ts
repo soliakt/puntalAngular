@@ -4,6 +4,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ApiLaravelService } from '../../services/api-laravel/api-laravel.service';
 import { ActivatedRoute } from '@angular/router';
 import { FormCheckerService } from '../../services/form-check/form-checker.service';
+import { catchError, throwError } from 'rxjs';
 
 
 @Component({
@@ -28,7 +29,7 @@ export class MobileIncidentComponent implements OnInit, OnDestroy {
   ) {
     this.reservation_id = 0;
     this.form = this.fb.group({
-      plate: [''],
+      hin: [''],
       captain_name: [''],
       captain_id: [''],
       harbour: [''],
@@ -56,7 +57,7 @@ export class MobileIncidentComponent implements OnInit, OnDestroy {
     console.log(this.data);
     this.reservation_id = this.data.id_reservation;
     this.form.patchValue({
-      plate: this.data.hin,
+      hin: this.data.hin,
       captain_name: this.data.name_captain,
       captain_id: this.data.id_captain,
       harbour: this.data.dock_name,
@@ -64,6 +65,22 @@ export class MobileIncidentComponent implements OnInit, OnDestroy {
     });
   }
 
+  onEnviarClick() {
+    const formData = this.form.value;
+    console.log(formData); // Log form data for debugging
+    this.apiLaravelService.addReport(this.reservation_id, formData).subscribe(
+      (response) => {
+        console.log('Confirmación completada:', response);
+        const showIncident = false;
+        this.formCheckerService.setShowIncident(showIncident);
+        const showForm = false;
+        this.formCheckerService.setShowForm(showForm);
+      },
+      (error) => {
+        console.error('Error al confirmar:', error);
+      }
+    );
+  }
   onVolverClick() {
     const showIncident = false;
     this.formCheckerService.setShowIncident(showIncident);

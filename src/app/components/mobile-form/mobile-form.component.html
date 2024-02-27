@@ -9,8 +9,7 @@
                     @if(this.fileUrl != "") {
                         <img src="{{this.fileUrl}}" class="mobile-image__placeholder mt-3" alt="imagen de ejemplo">
                     }@else{
-                        <label for="fileInput" class="mobile-image__placeholder mt-3">
-                        </label>
+                        <label for="fileInput" class="mobile-image__placeholder mt-3"></label>
                         <input type="file" id="fileInput" (change)="onFileSelected($event)" style="display: none;">
                     }
                 </div>
