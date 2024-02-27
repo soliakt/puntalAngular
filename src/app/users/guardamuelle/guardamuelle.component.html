@@ -1,6 +1,14 @@
-<header>
+<header> 
     <app-mobile-navbar></app-mobile-navbar>
     <app-mobile-profile></app-mobile-profile>
-    <app-mobile-section></app-mobile-section>
-    <app-mobile-table></app-mobile-table>
+    @if(!showForm){
+        <app-mobile-section></app-mobile-section>
+        <app-mobile-table></app-mobile-table>
+    } @else if (showForm){
+        @if(!showIncident){
+            <app-mobile-form></app-mobile-form>
+        }@else if (showIncident) {
+            <app-mobile-incident></app-mobile-incident>
+        }
+    }
 </header>

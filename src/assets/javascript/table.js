@@ -31,8 +31,8 @@ $(function () {
         return: true,
       },
       drawCallback: function () {
-        var api = this.api();
-        var pageInfo = api.page.info();
+        var api = this.api(); // Esto es la api de datatables
+        var pageInfo = api.page.info(); // Esto sobre la pagina en la que está en este momento (nº de registros mostrados, paginas, etc)
 
         var paginationHtml = '<ul class="pagination">';
         paginationHtml +=
@@ -58,7 +58,7 @@ $(function () {
 
         paginationHtml += "</ul>";
 
-        $(".dataTables_paginate").html(paginationHtml);
+        $(".dataTables_paginate").html(paginationHtml); // Reemplaza el contenido de datatables_paginate por el del paginationHtml
       },
       //Añadir clases y elementos adicionales a la barra de búsqueda
       initComplete: function () {
@@ -82,7 +82,7 @@ $(function () {
 
   initialize__table();
   $("#buscarAduanasButton").on("click", function () {
-    aduanas_table.search($("#buscarAduanasInput").val()).draw();
+    aduanas_table.search($("#buscarAduanasInput").val()).draw(); // Ejecuta la búsqueda y se vuelve a dibujar la tabla usando .draw()
   });
 
   //Función para cambiar disminuir la opacidad la fila
@@ -133,7 +133,7 @@ $(function () {
 
 function tablePage(pageNumber) {
   var employee = $("#aduanas_table").DataTable();
-  employee.page(pageNumber).draw(false);
+  employee.page(pageNumber).draw(false); // Con esto se dibuja la tabla y al poner draw(false) no se reinicia el orden o la busqueda
 }
 
 $(document).on("click", ".pagination .page-link", function () {
