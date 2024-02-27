@@ -20,6 +20,7 @@ td{
     height: 25px;
     width: 60px;
     border-radius: 3px;
+    color: white;
 }
 
 .mobile-table__title__header{
@@ -47,8 +48,4 @@ td{
 .mobile-form__content__icon{
     background-color: white !important;
     color: var(--corporate-blue);
-}
-
-.dataTables_empty {
-    display: none;
 }

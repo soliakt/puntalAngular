@@ -1,9 +1,10 @@
-import { Component, OnInit, OnDestroy, ElementRef, Renderer2 } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
-import { ApiLaravelService } from '../../services/api-laravel/api-laravel.service'; 
+
+import { Component, OnInit, OnDestroy, ElementRef, Renderer2, Output, EventEmitter, Inject } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
+import { ApiLaravelService } from '../../services/api-laravel/api-laravel.service';
 import { MobileSectionService } from '../../services/mobile-section/mobile-section.service';
-import { RefreshService } from '../../services/refresh/refresh.service';
 import { Subscription } from 'rxjs';
+import { FormCheckerService } from '../../services/form-check/form-checker.service';
 
 @Component({
   selector: 'app-mobile-table',
@@ -15,32 +16,25 @@ export class MobileTableComponent implements OnInit, OnDestroy { // OnInit es un
   selectedItem: string | undefined;
   subscription: Subscription = new Subscription(); // Esta instancia se crea para almacenar una suscripción a un observable
   selectedTitleItem: string = 'Próximas entradas y salidas';
-  showForm: boolean = false;
   dataSelectionRow: any;
-  form: FormGroup;
-  reservationId: any;
+  currentDate: string;
+  tableWatcher: boolean;
 
   constructor(
     private apiLaravelService: ApiLaravelService,
     private mobilesectionService: MobileSectionService,
-    private refreshService: RefreshService,
+    private formCheckerService: FormCheckerService,
     private renderer: Renderer2,
     private el: ElementRef,
     private fb: FormBuilder,
   ) {
-    this.form = this.fb.group({
-      plate: [''],
-      captain_name: [''],
-      captain_id: [''],
-      harbour: [''],
-      berth: ['']
-    });
+    this.tableWatcher = false;
+    this.currentDate = new Date().toISOString().slice(0, 10);
   }
 
   ngOnInit(){
     this.subscribeToSelectedItem();
     this.recover();
-    this.loadTableJS();
   }
 
   ngOnDestroy(){
@@ -62,7 +56,7 @@ export class MobileTableComponent implements OnInit, OnDestroy { // OnInit es un
       case 'Salidas':
         return 'Próximas salidas';
       case 'Registros':
-        return "Registros realizados";
+        return 'Registros realizados';
       default:
         return 'Próximas entradas y salidas';
     }
@@ -70,65 +64,55 @@ export class MobileTableComponent implements OnInit, OnDestroy { // OnInit es un
 
   recover(){
     const today = new Date().toISOString().slice(0, 10);
-    if (this.selectedItem === 'Entradas') {
+    if (this.selectedTitleItem === 'Próximas entradas') {
       this.apiLaravelService.getReservationInfoFiltered().subscribe((data: any[]) => {
         this.data = data.filter(item => !item.date_entry_confirmed);
+        console.log("Entrada:" + this.data);
+      }, error => {
+        console.error('Error fetching Próximas entradas data:', error);
       });
-    } else if (this.selectedItem === 'Salidas') {
+    } else if (this.selectedTitleItem === 'Próximas salidas') {
       this.apiLaravelService.getReservationInfoFiltered().subscribe((data: any[]) => {
         this.data = data.filter(item => !item.date_exit_confirmed && item.date_entry_confirmed);
+        console.log("Salida:" + this.data);
+      }, error => {
+        console.error('Error fetching Próximas salidas data:', error);
       });
-    } else if (this.selectedItem === 'Registros') {
+    } else if (this.selectedTitleItem === 'Registros realizados') {
       this.apiLaravelService.getReservationInfoFiltered().subscribe((data: any[]) => {
         this.data = data.filter(item => item.date_entry_confirmed === today && !item.date_exit_confirmed);
+        console.log("Registros:" + this.data);
+      }, error => {
+        console.error('Error fetching Registros realizados data:', error);
       });
     } else {
       this.apiLaravelService.getReservationInfoFiltered().subscribe((data: any[]) => {
+        if(!this.tableWatcher){
+          this.loadTableJS();
+          this.tableWatcher = true;
+        }
         this.data = data;
+        console.log("Inicio:" + this.data);
+      }, error => {
+        console.error('Error fetching data for default case:', error);
       });
     }
   }
+  
 
   loadTableJS(){
     const script = this.renderer.createElement('script');
     script.type = 'text/javascript';
     script.src = './assets/javascript/mobile-table.js';
     script.defer = true;
-    this.renderer.appendChild(this.el.nativeElement, script);
+    document.body.appendChild(script);
   }
 
-  onRowClick(index: number){
-    this.refreshService.set__source('mobile-table');
-    this.showForm = true;
-    this.dataSelectionRow = this.data[index];
-    this.form.setValue({
-      plate: this.dataSelectionRow.hin,
-      captain_name: this.dataSelectionRow.name_captain,
-      captain_id: this.dataSelectionRow.id_captain,
-      harbour: this.dataSelectionRow.dock_name,
-      berth: this.dataSelectionRow.berth_name
-    });
-    this.reservationId = this.dataSelectionRow.id_reservation;
-  }
+  onRowClick(index: number) {
+    const showForm = true;
+    this.formCheckerService.setShowForm(showForm);
+    console.log(this.data[index]);
+    this.formCheckerService.setFormData(this.data[index]);
 
-  onVolverClick(){
-    this.showForm = false;
-    const source = this.refreshService.get__source();
-    if (source === 'mobile-table') {
-      this.recover();
-    }
-  }
-
-  onRegisterClick(reservation_id : number){
-    this.apiLaravelService.updateReservationConfirmation(reservation_id).subscribe( // Nos suscribimos a ese observable
-      (response) => {
-        console.log('Confirmación completada:', response);
-      },
-      (error) => {
-        console.error('Error al confirmar:', error);
-      }
-    );
-    
-    this.showForm = false;
   }
 }

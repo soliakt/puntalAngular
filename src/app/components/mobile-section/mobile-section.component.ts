@@ -7,6 +7,7 @@ import { MobileSectionService } from '../../services/mobile-section/mobile-secti
   styleUrls: ['./mobile-section.component.css']
 })
 export class MobileSectionComponent {
+
   constructor(private mobileSectionService: MobileSectionService) {}
 
   selectItem(item: string, event: MouseEvent) {

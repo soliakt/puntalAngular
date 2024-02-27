@@ -4,8 +4,10 @@ $(function () {
     var table__generic;
   
     function initialize__table() {
-      //Primero destruye la tabla si ya existe, asi evitamos errores cuando se refresca la pagina
-      $("#generic__mobile").DataTable().destroy();
+      if ($.fn.DataTable.isDataTable("#generic__mobile")) {
+        console.log("Se destruye la tabla");
+        $("#generic__mobile").DataTable().clear().destroy();
+      }
   
       table__generic = $("#generic__mobile").DataTable({
         order: [[0, "desc"]],

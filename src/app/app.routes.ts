@@ -7,6 +7,9 @@ import { PasswordResetComponent } from "./login/password-reset/password-reset.co
 import { aduanaGuard } from "./guards/aduana.guard";
 import { guardamuellesGuard } from "./guards/guardamuelles.guard";
 import { loginGuard } from "./guards/login.guard";
+import { MobileTableModule } from "./components/mobile-table/mobile-table.module";
+import { MobileFormComponent } from "./components/mobile-form/mobile-form.component";
+import { MobileTableComponent } from "./components/mobile-table/mobile-table.component";
 
 export const routes: Routes = [
   {
@@ -36,6 +39,10 @@ export const routes: Routes = [
     path: "guardamuelle",
     component: GuardamuelleComponent,
     canActivate: [guardamuellesGuard],
+    children: [
+      { path: '', component: MobileTableComponent },
+      { path: 'mobile-form', component: MobileFormComponent }
+    ]
   },
   {
     path: "**",
