@@ -31,6 +31,7 @@ export class AduanaTableComponent {
     this.recover();
   }
 
+  //Función para traer los datos de la tabla y cargarla
   recover() {
     this.aduanasService
       .getLogsFiltered()
@@ -40,6 +41,7 @@ export class AduanaTableComponent {
       });
   }
 
+  //Función para cargar la datatable desde un archivo js externo
   loadTableJS() {
     const script = this.renderer.createElement("script");
     script.type = "text/javascript";
@@ -48,6 +50,7 @@ export class AduanaTableComponent {
     this.renderer.appendChild(this.el.nativeElement, script);
   }
 
+  //Función para marcar como leido el registro clicado
   markAsSeen(reservation_id: number) {
     this.aduanasService.markAsSeen(reservation_id).subscribe(
       (response) => {
@@ -59,6 +62,7 @@ export class AduanaTableComponent {
     );
   }
 
+  //Función para comprobar si el checkbox de marcar todos como leido está marcado y si lo está hace la función markAllAsSeen
   onSelectAllChange(event: any) {
     console.log("Entra a la función");
     if (event.target.checked == true) {
@@ -69,6 +73,7 @@ export class AduanaTableComponent {
     }
   }
 
+  //Función para marcar como leidos los 10 primeros registros
   markAllAsSeen() {
     this.aduanasService.markPageAsSeen().subscribe(
       (response) => {

@@ -20,12 +20,14 @@ export class LoginComponent {
   rememberEmail: boolean = false;
   passwordFieldType: string = "password";
 
+  //Función para mostrar la contraseña
   showPassword(event: Event) {
     event.preventDefault();
     this.passwordFieldType =
       this.passwordFieldType === "password" ? "text" : "password";
   }
 
+  //Función para comprobar si el checkbox de redordar contraseña está marcado
   onCheck(event) {
     if (event.target.checked) {
       this.rememberEmail = true;
@@ -35,23 +37,24 @@ export class LoginComponent {
   constructor(
     private http: HttpClient,
     private router: Router,
-    private cookieService: CookieService,
-    private el: ElementRef
+    private cookieService: CookieService
   ) {
     this.loginObj = new Login();
     this.loadEmailFromCookie();
   }
 
+  //Función para comprobar las credenciales introducidas con la api
   check__login() {
     this.http
       .post("http://127.0.0.1:8000/api/employee/login", this.loginObj)
       .subscribe(
         (res: any) => {
-          console.log(res.rolename);
+          //Si comprobar email está marcado almacena una cookie con este
           if (this.rememberEmail == true) {
-            console.log(res.email);
             this.cookieService.set("Email", res.email);
           }
+
+          //Si el usuario no está inactivo y este posee el rol de Aduanas o Guardamuelles se almacena un token de login y 2 con datos de usuarios
           if (res.status !== "Inactivo") {
             if (res.rolename == "Aduanas") {
               localStorage.setItem("loginToken", res.data.token);
@@ -66,15 +69,20 @@ export class LoginComponent {
               localStorage.setItem("employeeName", res.name);
               this.router.navigateByUrl("/guardamuelle");
             }
-          } else {
+          }
+          //Si las credenciales son correctas, pero el usuario está inactivo sacará un error para informar al usuario de que está inactivo
+          else {
             this.statusError = true;
           }
         },
+        //Si las credenciales son incorrectas sacará un error de autenticación por pantalla
         (error) => {
           this.credentialError = true;
         }
       );
   }
+
+  //Función para cargar la cookie en el input de email si esta está creada
   loadEmailFromCookie() {
     const storedEmail = this.cookieService.get("Email");
     if (storedEmail) {
