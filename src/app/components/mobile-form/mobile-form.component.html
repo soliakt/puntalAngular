@@ -1,13 +1,14 @@
 <div class="container pt-3">
     <div class="row bg-white">
         <div class="col-12 position-relative">
-                <div class="row d-flex justify-content-center">
-                    <div class="mobile-image__placeholder mt-3"></div>
-                </div>
                 <div class="position-absolute top-0 end-0 mt-1 me-3" (click)="onReportClick()">
                     <img src="assets/icons/incidencia.svg" alt="Icono de reportar incidencia">  
                 </div>      
                 <form [formGroup]="form">
+                <div class="row d-flex justify-content-center">
+                    <div class="mobile-image__placeholder mt-3" [style.background-image]="'url(' + fileUrl + ')'"></div>
+                    <input type="file" (change)="onFileSelected($event)" style="display: none;" #fileInput>
+                </div>
                 <div class="mb-3 mt-2 form-group">
                     <label for="plate" class="form-label">Matrícula</label><br>
                     <div class="input-group mobile-form__content__icon">                

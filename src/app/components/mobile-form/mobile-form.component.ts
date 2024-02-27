@@ -19,6 +19,8 @@ export class MobileFormComponent implements OnInit, OnDestroy {
   dataSelectionRow: any;
   formSubscription: any;
   reservation_id: number;
+  selectedFile: File | null = null;
+  fileUrl: string | null = null;
 
   constructor(
     private fb: FormBuilder,
@@ -47,6 +49,14 @@ export class MobileFormComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     if (this.formSubscription) {
       this.formSubscription.unsubscribe();
+    }
+  }
+
+  onFileSelected(event: any){
+    this.selectedFile = event.target.files[0];
+    if (this.selectedFile) {
+      this.fileUrl = URL.createObjectURL(this.selectedFile);
+      console.log(this.fileUrl);
     }
   }
 

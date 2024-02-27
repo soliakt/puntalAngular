@@ -7,11 +7,13 @@ import { MobileSectionModule } from '../../components/mobile-section/mobile-sect
 import { Router, RouterOutlet } from '@angular/router';
 import { FormCheckerService } from '../../services/form-check/form-checker.service';
 import { MobileIncidentComponent } from '../../components/mobile-incident/mobile-incident.component';
+import { CommonModule } from '@angular/common';
+
 
 @Component({
   selector: 'app-guardamuelle',
   standalone: true,
-  imports: [MobileNavbarComponent, MobileProfileComponent, MobileSectionModule, MobileTableModule, MobileFormComponent, MobileIncidentComponent,RouterOutlet],
+  imports: [MobileNavbarComponent, MobileProfileComponent, MobileSectionModule, MobileTableModule, MobileFormComponent, MobileIncidentComponent,RouterOutlet, CommonModule],
   templateUrl: './guardamuelle.component.html',
   styleUrl: './guardamuelle.component.css'
 })
