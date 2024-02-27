@@ -20,7 +20,7 @@ export class MobileFormComponent implements OnInit, OnDestroy {
   formSubscription: any;
   reservation_id: number;
   selectedFile: File | null = null;
-  fileUrl: string | null = null;
+  fileUrl: string;
 
   constructor(
     private fb: FormBuilder,
@@ -29,6 +29,7 @@ export class MobileFormComponent implements OnInit, OnDestroy {
     private formCheckerService: FormCheckerService
   ) {
     this.reservation_id = 0;
+    this.fileUrl = "";
     this.form = this.fb.group({
       plate: [''],
       captain_name: [''],
@@ -42,6 +43,7 @@ export class MobileFormComponent implements OnInit, OnDestroy {
     this.formSubscription = this.formCheckerService.formData$.subscribe(data => {
       if (data) {
         this.receiveRowData(data);
+        console.log(this.dataSelectionRow);
       }
     });
   }
@@ -52,11 +54,10 @@ export class MobileFormComponent implements OnInit, OnDestroy {
     }
   }
 
-  onFileSelected(event: any){
+  onFileSelected(event: any) {
     this.selectedFile = event.target.files[0];
     if (this.selectedFile) {
-      this.fileUrl = URL.createObjectURL(this.selectedFile);
-      console.log(this.fileUrl);
+      this.fileUrl = `assets/images/${this.selectedFile.name}`;
     }
   }
 
@@ -71,6 +72,11 @@ export class MobileFormComponent implements OnInit, OnDestroy {
       harbour: this.dataSelectionRow.dock_name,
       berth: this.dataSelectionRow.berth_name
     });
+    if(this.dataSelectionRow.date_entry_confirmed != null){
+      this.getImage();
+    } else{
+      this.fileUrl = "";
+    }
   }
 
   onVolverClick(){
@@ -89,11 +95,24 @@ export class MobileFormComponent implements OnInit, OnDestroy {
       this.apiLaravelService.updateReservationConfirmation(this.reservation_id).subscribe(
         (response) => {
           console.log('Confirmación completada:', response);
-          this.onVolverClick();
         },
         (error) => {
           console.error('Error al confirmar:', error);
         }
       );
+      this.apiLaravelService.saveImagePath(this.reservation_id, this.fileUrl).subscribe(response => {
+        console.log('Guardado satisfactoriamente', response);
+      }, error => {
+        console.error('Error al guardar:', error);
+      });
+      this.onVolverClick();
+  }
+
+  getImage(){
+    this.apiLaravelService.getImage(this.reservation_id).subscribe(response => {
+      this.fileUrl = response;
+    }, error => {
+      console.error('Error al guardar:', error);
+    });
   }
 }

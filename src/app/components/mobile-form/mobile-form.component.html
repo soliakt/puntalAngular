@@ -6,8 +6,13 @@
                 </div>      
                 <form [formGroup]="form">
                 <div class="row d-flex justify-content-center">
-                    <div class="mobile-image__placeholder mt-3" [style.background-image]="'url(' + fileUrl + ')'"></div>
-                    <input type="file" (change)="onFileSelected($event)" style="display: none;" #fileInput>
+                    @if(this.fileUrl != "") {
+                        <img src="{{this.fileUrl}}" class="mobile-image__placeholder mt-3" alt="imagen de ejemplo">
+                    }@else{
+                        <label for="fileInput" class="mobile-image__placeholder mt-3">
+                        </label>
+                        <input type="file" id="fileInput" (change)="onFileSelected($event)" style="display: none;">
+                    }
                 </div>
                 <div class="mb-3 mt-2 form-group">
                     <label for="plate" class="form-label">Matrícula</label><br>

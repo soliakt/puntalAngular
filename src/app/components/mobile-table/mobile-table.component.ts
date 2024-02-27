@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy, ElementRef, Renderer2, Output, EventEmitter, Inject } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder } from '@angular/forms';
 import { ApiLaravelService } from '../../services/api-laravel/api-laravel.service';
 import { MobileSectionService } from '../../services/mobile-section/mobile-section.service';
 import { Subscription } from 'rxjs';
@@ -16,7 +16,6 @@ export class MobileTableComponent implements OnInit, OnDestroy {
   subscription: Subscription = new Subscription();
   selectedTitleItem: string = 'Próximas entradas y salidas';
   dataSelectionRow: any;
-  form: FormGroup;
   currentDate: string;
   tableWatcher: boolean;
 
@@ -30,13 +29,6 @@ export class MobileTableComponent implements OnInit, OnDestroy {
   ) {
     this.tableWatcher = false;
     this.currentDate = new Date().toISOString().slice(0, 10);
-    this.form = this.fb.group({
-      plate: [''],
-      captain_name: [''],
-      captain_id: [''],
-      harbour: [''],
-      berth: ['']
-    });
   }
 
   ngOnInit(){
