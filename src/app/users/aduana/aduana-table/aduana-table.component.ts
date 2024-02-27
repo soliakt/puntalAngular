@@ -31,7 +31,7 @@ export class AduanaTableComponent {
     this.recover();
   }
 
-  //Función para traer los datos de la tabla y cargarla
+  //Función para traer los datos de la Api y cargarlos en la tabla
   recover() {
     this.aduanasService
       .getLogsFiltered()
@@ -50,7 +50,7 @@ export class AduanaTableComponent {
     this.renderer.appendChild(this.el.nativeElement, script);
   }
 
-  //Función para marcar como leido el registro clicado
+  //Función para marcar como leido el log clicado
   markAsSeen(reservation_id: number) {
     this.aduanasService.markAsSeen(reservation_id).subscribe(
       (response) => {
@@ -62,7 +62,7 @@ export class AduanaTableComponent {
     );
   }
 
-  //Función para comprobar si el checkbox de marcar todos como leido está marcado y si lo está hace la función markAllAsSeen
+  //Listener para comprobar si el checkbox de marcar todos como leido está marcado y si lo está hace la función markAllAsSeen
   onSelectAllChange(event: any) {
     console.log("Entra a la función");
     if (event.target.checked == true) {
@@ -73,7 +73,7 @@ export class AduanaTableComponent {
     }
   }
 
-  //Función para marcar como leidos los 10 primeros registros
+  //Función para marcar como leidos los 10 primeros logs
   markAllAsSeen() {
     this.aduanasService.markPageAsSeen().subscribe(
       (response) => {

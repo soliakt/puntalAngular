@@ -27,7 +27,7 @@ export class LoginComponent {
       this.passwordFieldType === "password" ? "text" : "password";
   }
 
-  //Función para comprobar si el checkbox de redordar contraseña está marcado
+  //Listener para comprobar si el checkbox de redordar contraseña está marcado
   onCheck(event) {
     if (event.target.checked) {
       this.rememberEmail = true;
