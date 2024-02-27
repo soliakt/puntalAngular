@@ -34,6 +34,7 @@ export class ApiLaravelService {
     return this.http.get<any>(
       `${this.defaultURL}/reservation/get/image/${reservationId}`
     );
+
   }
 
 }

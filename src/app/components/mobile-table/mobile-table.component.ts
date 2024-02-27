@@ -1,3 +1,4 @@
+
 import { Component, OnInit, OnDestroy, ElementRef, Renderer2, Output, EventEmitter, Inject } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { ApiLaravelService } from '../../services/api-laravel/api-laravel.service';
@@ -10,10 +11,10 @@ import { FormCheckerService } from '../../services/form-check/form-checker.servi
   templateUrl: './mobile-table.component.html',
   styleUrls: ['./mobile-table.component.css']
 })
-export class MobileTableComponent implements OnInit, OnDestroy {
+export class MobileTableComponent implements OnInit, OnDestroy { // OnInit es una interfaz de angular que llama a ngOnInit() para que se inicialice el componente
   data: any[] = [];
   selectedItem: string | undefined;
-  subscription: Subscription = new Subscription();
+  subscription: Subscription = new Subscription(); // Esta instancia se crea para almacenar una suscripción a un observable
   selectedTitleItem: string = 'Próximas entradas y salidas';
   dataSelectionRow: any;
   currentDate: string;
@@ -112,5 +113,6 @@ export class MobileTableComponent implements OnInit, OnDestroy {
     this.formCheckerService.setShowForm(showForm);
     console.log(this.data[index]);
     this.formCheckerService.setFormData(this.data[index]);
+
   }
 }
