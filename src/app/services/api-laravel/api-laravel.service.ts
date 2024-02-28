@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 
 export class ApiLaravelService {
-  private defaultURL = "http://127.0.0.1:8000/api";
+  private defaultURL = "http://18.201.17.130/api";
   constructor(private http: HttpClient) {}
   getReservationInfoFiltered(): Observable<any[]> {
     return this.http.get<any[]>(

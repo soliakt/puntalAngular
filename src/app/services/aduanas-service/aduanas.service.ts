@@ -8,7 +8,7 @@ import { HttpClient } from "@angular/common/http";
 
 //Servicio para conectar Aduanas con la Api
 export class AduanasService {
-  private urlApi = "http://127.0.0.1:8000/api";
+  private urlApi = "http://18.201.17.130/api";
 
   constructor(private http: HttpClient) {}
 

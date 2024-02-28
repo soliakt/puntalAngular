@@ -46,7 +46,7 @@ export class LoginComponent {
   //Función para comprobar las credenciales introducidas con la api
   check__login() {
     this.http
-      .post("http://127.0.0.1:8000/api/employee/login", this.loginObj)
+      .post("http://18.201.17.130/api/employee/login", this.loginObj)
       .subscribe(
         (res: any) => {
           //Si comprobar email está marcado almacena una cookie con este
