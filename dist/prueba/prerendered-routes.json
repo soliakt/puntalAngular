@@ -1,0 +1,10 @@
+{
+  "routes": [
+    "/aduana",
+    "/guardamuelle",
+    "/guardamuelle/mobile-form",
+    "/login",
+    "/password-recovery",
+    "/password-reset"
+  ]
+}
